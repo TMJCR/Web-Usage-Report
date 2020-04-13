@@ -256,6 +256,7 @@ const getUserIDsFromDB = async () => {
   return userIDs;
 };
 
+//Generate a random number of website visits associated with a random user
 const createVisitData = async (numOfRecordsToAdd) => {
   const users = await getUserIDsFromDB();
   for (let i = 0; i < numOfRecordsToAdd; i++) {

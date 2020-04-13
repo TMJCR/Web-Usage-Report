@@ -3,11 +3,13 @@ require('../db/mongoose');
 // require('./seed');
 
 const User = require('../models/user');
+const Visits = require('../models/visit');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.send('Here');
+app.get('/', async (req, res) => {
+  const users = await User.find({});
+  res.send(users);
 });
 
 app.listen(port, () => {
