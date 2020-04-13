@@ -1,12 +1,10 @@
 const express = require('express');
 require('../db/mongoose');
+// require('./seed');
 
 const User = require('../models/user');
 const app = express();
 const port = process.env.PORT || 3000;
-
-const user = new User({ firstName: 'Thomas', visits: ['_123abc', '_234bcd'] });
-user.save();
 
 app.get('/', (req, res) => {
   res.send('Here');
