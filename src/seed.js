@@ -2,9 +2,9 @@ const User = require('../models/user');
 const Visit = require('../models/visit');
 
 const companies = [
-  'Abore Capital Management',
+  'Arbor Capital Management',
   'AQB Asset Management',
-  'Bishopgate Capital',
+  'Bishopsgate Capital',
   'Melior Capital',
   'New Peak Group',
   'Hatton & Partners',
@@ -281,7 +281,7 @@ const createVisitData = async (numOfRecordsToAdd) => {
   }
 };
 
-createVisitData(1000);
+createVisitData(2000);
 
 const findVisit = async (id) => {
   const user = await User.findById(id);
