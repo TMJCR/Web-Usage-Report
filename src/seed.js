@@ -6,7 +6,7 @@ const companies = [
   'AQB Asset Management',
   'Bishopsgate Capital',
   'Melior Capital',
-  'New Peak Group',
+  'Nexum Group',
   'Hatton & Partners',
   'Temple Securities',
   'CTIX International',
@@ -221,10 +221,10 @@ const names = [
 
 const pages = [
   'UK Economic Forecasts',
-  'European Economic Forecasts',
+  'EU Economic Forecasts',
   'Credit Market Forecasts',
   'Housing Market Forecasts',
-  'Disposable Income Forecasts',
+  'Household Income Forecasts',
   'Portfolio Insight',
   'Mortgage Markets',
   'Commodities',
@@ -236,7 +236,32 @@ const generateRandom = (rangeEnd) => {
   return Math.ceil(Math.random() * rangeEnd);
 };
 
-// Seeding User Data
+var randomChoiceWithWeightMulti = (choices, weights) => {
+  let weight = 0;
+  let selected;
+  const random = Math.random();
+  choices.forEach((choice, index) => {
+    if (random >= weight && random <= weight + weights[index]) {
+      selected = choice;
+    }
+    weight += weights[index];
+  });
+  return selected;
+};
+
+// const testingProbablilites = () => {
+//   let arr = [];
+//   for (let i = 0; i < 1000; i++) {
+//     const selection = randomChoiceWithWeightMulti(["mobile","desktop","email","URL"],[0.80,0.04,0.06,0.1])
+//     if (selection === 'mobile') {
+//       arr.push(selection);
+//     }
+//   }
+//   return arr.length;
+// };
+
+//// Seeding User Data
+
 // for (name of names) {
 //   const [firstName, lastName] = name.split(' ');
 //   const randomSelection = generateRandom(companies.length - 1);
@@ -261,14 +286,33 @@ const createVisitData = async (numOfRecordsToAdd) => {
   const users = await getUserIDsFromDB();
   for (let i = 0; i < numOfRecordsToAdd; i++) {
     const user = users[generateRandom(users.length - 1)];
-    const randomMonth = generateRandom(4);
+    const randomMonth = generateRandom(5);
     const randomDay = generateRandom(27);
     const randomHour = generateRandom(23);
     const randomMin = generateRandom(59);
     const page = pages[generateRandom(pages.length - 1)];
     const time = new Date(2020, randomMonth, randomDay, randomHour, randomMin);
-
-    const visit = new Visit({ page, time, userId: user._id });
+    const download = randomChoiceWithWeightMulti([true, false], [0.13, 0.87]);
+    const subscriber = randomChoiceWithWeightMulti([true, false], [0.98, 0.02]);
+    const device = randomChoiceWithWeightMulti(
+      ['Mobile', 'Desktop'],
+      [0.84, 0.16]
+    );
+    const method = randomChoiceWithWeightMulti(
+      ['Link', 'Url', 'Advert', 'Social'],
+      [0.1, 0.82, 0.02, 0.06]
+    );
+    const visitLength = generateRandom(240);
+    const visit = new Visit({
+      page,
+      time,
+      download,
+      subscriber,
+      device,
+      method,
+      visitLength,
+      userId: user._id,
+    });
     const userID = visit.userId;
 
     visit.save();

@@ -1,7 +1,7 @@
 const express = require('express');
 require('../db/mongoose');
 const LandingPage = require('../views/landingPage.js');
-// require('./seed');
+require('./seed');
 
 const User = require('../models/user');
 const Visits = require('../models/visit');
@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.get('/', async (req, res) => {
   const users = await User.find({});
 
-  res.send(<h1>Test</h1>);
+  res.send('test');
 });
 
 app.listen(port, () => {

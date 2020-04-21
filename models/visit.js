@@ -11,6 +11,21 @@ const Visit = mongoose.model('Visit', {
     type: Date,
     default: Date.now,
   },
+  download: {
+    type: Boolean,
+  },
+  subscriber: {
+    type: Boolean,
+  },
+  device: {
+    type: String,
+  },
+  method: {
+    type: String,
+  },
+  visitLength: {
+    type: Number,
+  },
 });
 
 module.exports = Visit;
