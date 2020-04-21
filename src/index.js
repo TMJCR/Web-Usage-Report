@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const hbs = require('hbs');
 
 require('../db/mongoose');
 // require('./seed');
@@ -9,15 +10,30 @@ const Visits = require('../models/visit');
 
 const app = express();
 
+// Define paths for Express config
+const publicDirectoryPath = path.join(__dirname, '../public');
+const viewsPath = path.join(__dirname, '../templates/views');
+const partialsPath = path.join(__dirname, '../templates/partials');
+
+//Setup handlebars engine and views location
 app.set('view engine', 'hbs');
-app.use(express.static(path.join(__dirname, '../public')));
+app.set('views', viewsPath);
+hbs.registerPartials(partialsPath);
+
+//Setup static directory to serve
+app.use('/public/', express.static(publicDirectoryPath));
 
 const port = process.env.PORT || 3000;
 
 app.get('/', async (req, res) => {
   const users = await User.find({});
+  res.render('index', {
+    title: 'App',
+  });
+});
 
-  res.render('index');
+app.get('/*', (req, res) => {
+  res.redirect('/');
 });
 
 app.listen(port, () => {
