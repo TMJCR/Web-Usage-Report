@@ -1,0 +1,454 @@
+<div id="content">
+    <section id="stats">
+        <div class="stat stat-1">
+            <i class="stat-icon fas fa-desktop fa-lg"></i>
+            <div class="stat-text-value">
+                <div class="stat-text">
+                    Total Visits
+                </div>
+                <div class="stat-value">(500)</div>
+            </div>
+        </div>
+        <div class="stat stat-2">
+            <i class="stat-icon fas fa-laptop-house fa-lg"></i>
+            <div class="stat-text-value">
+                <div class="stat-text">
+                    Unique Visits
+                </div>
+                <div class="stat-value">(350)</div>
+            </div>
+        </div>
+        <div class="stat stat-3">
+            <i class="stat-icon far fa-clock fa-lg"></i>
+            <div class="stat-text-value">
+                <div class="stat-text">
+                    Avg. Visit Length
+                </div>
+                <div class="stat-value">(30s)</div>
+            </div>
+        </div>
+    </section>
+    <section id="charts">
+        <div class="chart chart1">
+            {{>downloadGauge day=day}}
+        </div>
+
+        <div class="chart chart2">
+            <canvas id="myChart1" width="250" height="200"></canvas>
+        </div>
+
+        <div class="chart chart3">
+            <canvas id="myChart2" width="250" height="200"></canvas>
+        </div>
+
+        <div class="chart chart4">
+            <div class="chart-header purple-gradient subchart4-1">
+                Date of Report
+            </div>
+            <div class="chart-box">
+                <!-- <div class="subchart4-2">UK ECONOMIC FORECASTS</div>
+              <div class="subchart4-3">125</div>
+              <div class="hit-count"> Visits in Previous 30 Days</div> -->
+                <div class="subchart4-3">MAY {{day}} 2020</div>
+                <form action="/" method="Get">
+                    <select name="month">
+                        <option value="Jan">Jan</option>
+                        <option value="Feb">Feb</option>
+                        <option value="Mar">Mar</option>
+                    </select>
+                    <select name="day">
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                    </select>
+                    <select name="year">
+                        <option value="2020">2020</option>
+                    </select>
+                    <button>submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section id="icons">
+        <div class="icon icon1">
+            <i class="fas fa-user fa-lg"></i>
+            <i class="far fa-user fa-lg"></i>
+
+            <div class="icon-text">18</div>
+            <div class="icon-text">4</div>
+
+            <div class="icon-subtext">Subscriber</div>
+            <div class="icon-subtext">Non-Subscriber</div>
+        </div>
+        <div class="icon icon2">
+            <i class="fas fa-mobile-alt fa-lg"></i>
+            <i class="fas fa-desktop fa-lg"></i>
+
+            <div class="icon-text">48%</div>
+            <div class="icon-text">52%</div>
+
+            <div class="icon-subtext">Mobile</div>
+            <div class="icon-subtext">Desktop</div>
+        </div>
+        <div class="icon icon-4 icon3">
+            <i class="fas fa-at fa-lg"></i>
+            <i class="fab fa-chrome fa-lg"></i>
+            <i class="fas fa-ad fa-lg"></i>
+            <i class="fab fa-twitter-square fa-lg"></i>
+
+            <div class="icon-text">10%</div>
+            <div class="icon-text">82%</div>
+            <div class="icon-text">2%</div>
+            <div class="icon-text">6%</div>
+
+            <div class="icon-subtext">Followed Link</div>
+            <div class="icon-subtext">URL</div>
+            <div class="icon-subtext">Advert</div>
+            <div class="icon-subtext">Social Media</div>
+        </div>
+    </section>
+    <section id="cards">
+        <div class="card card1">
+            <div class="card-header blue-gradient subcard1-1">Aandeweil</div>
+            <div class="card-image"><img src="Aandewiel.png" alt="" /></div>
+            <div class="card-body">
+                <div class="card-body-text">Users</div>
+                <div class="card-body-value">32</div>
+                <div class="card-body-text">Visits in Past 30 Days</div>
+                <div class="card-body-value">100</div>
+                <div class="card-body-text">Most Popular Page</div>
+                <div class="card-body-value">UK Economic Forecasts</div>
+            </div>
+            <a class="card-more">More ></a>
+        </div>
+        <div class="card card2">
+            <div class="card-header blue-gradient subcard1-1">Temple</div>
+            <div class="subcard1-2"><img src="Temple.png" alt="" /></div>
+            <div class="card-body">
+                <div class="card-body-text">Users</div>
+                <div class="card-body-value">32</div>
+                <div class="card-body-text">Visits in Past 30 Days</div>
+                <div class="card-body-value">100</div>
+                <div class="card-body-text">Most Popular Page</div>
+                <div class="card-body-value">UK Economic Forecasts</div>
+            </div>
+
+            <a class="card-more">More ></a>
+        </div>
+        <div class="card card3">
+            <div class="card-header blue-gradient subcard1-1">Arbor</div>
+            <div class="subcard1-2"><img src="Arbor.png" alt="" /></div>
+            <div class="card-body">
+                <div class="card-body-text">Users</div>
+                <div class="card-body-value">32</div>
+                <div class="card-body-text">Visits in Past 30 Days</div>
+                <div class="card-body-value">100</div>
+                <div class="card-body-text">Most Popular Page</div>
+                <div class="card-body-value">UK Economic Forecasts</div>
+            </div>
+
+            <a class="card-more">More ></a>
+        </div>
+        <div class="card card4">
+            <div class="card-header blue-gradient subcard1-1">Melior</div>
+            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
+            <div class="card-body">
+                <div class="card-body-text">Users</div>
+                <div class="card-body-value">32</div>
+                <div class="card-body-text">Visits in Past 30 Days</div>
+                <div class="card-body-value">100</div>
+                <div class="card-body-text">Most Popular Page</div>
+                <div class="card-body-value">UK Economic Forecasts</div>
+            </div>
+            <a class="card-more">More ></a>
+        </div>
+        <div class="card card5">
+            <div class="card-header blue-gradient subcard1-1">Melior</div>
+            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
+            <div class="card-body">
+                <div class="card-body-text">Users</div>
+                <div class="card-body-value">32</div>
+                <div class="card-body-text">Visits in Past 30 Days</div>
+                <div class="card-body-value">100</div>
+                <div class="card-body-text">Most Popular Page</div>
+                <div class="card-body-value">UK Economic Forecasts</div>
+            </div>
+            <a class="card-more">More ></a>
+        </div>
+        <div class="card card6">
+            <div class="card-header blue-gradient subcard1-1">Melior</div>
+            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
+            <div class="card-body">
+                <div class="card-body-text">Users</div>
+                <div class="card-body-value">32</div>
+                <div class="card-body-text">Visits in Past 30 Days</div>
+                <div class="card-body-value">100</div>
+                <div class="card-body-text">Most Popular Page</div>
+                <div class="card-body-value">UK Economic Forecasts</div>
+            </div>
+            <a class="card-more">More ></a>
+        </div>
+        <div class="card card7">
+            <div class="card-header blue-gradient subcard1-1">Melior</div>
+            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
+            <div class="card-body">
+                <div class="card-body-text">Users</div>
+                <div class="card-body-value">32</div>
+                <div class="card-body-text">Visits in Past 30 Days</div>
+                <div class="card-body-value">100</div>
+                <div class="card-body-text">Most Popular Page</div>
+                <div class="card-body-value">UK Economic Forecasts</div>
+            </div>
+            <a class="card-more">More ></a>
+        </div>
+        <div class="card card8">
+            <div class="card-header blue-gradient subcard1-1">Melior</div>
+            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
+            <div class="card-body">
+                <div class="card-body-text">Users</div>
+                <div class="card-body-value">32</div>
+                <div class="card-body-text">Visits in Past 30 Days</div>
+                <div class="card-body-value">100</div>
+                <div class="card-body-text">Most Popular Page</div>
+                <div class="card-body-value">UK Economic Forecasts</div>
+            </div>
+            <a class="card-more">More ></a>
+        </div>
+        <div class="card card9">
+            <div class="card-header blue-gradient subcard1-1">Melior</div>
+            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
+            <div class="card-body">
+                <div class="card-body-text">Users</div>
+                <div class="card-body-value">32</div>
+                <div class="card-body-text">Visits in Past 30 Days</div>
+                <div class="card-body-value">100</div>
+                <div class="card-body-text">Most Popular Page</div>
+                <div class="card-body-value">UK Economic Forecasts</div>
+            </div>
+            <a class="card-more">More ></a>
+        </div>
+        <div class="card card10">
+            <div class="card-header blue-gradient subcard1-1">Melior</div>
+            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
+            <div class="card-body">
+                <div class="card-body-text">Users</div>
+                <div class="card-body-value">32</div>
+                <div class="card-body-text">Visits in Past 30 Days</div>
+                <div class="card-body-value">100</div>
+                <div class="card-body-text">Most Popular Page</div>
+                <div class="card-body-value">UK Economic Forecasts</div>
+            </div>
+            <a class="card-more">More ></a>
+        </div>
+        <div class="card card11">
+            <div class="card-header blue-gradient subcard1-1">Melior</div>
+            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
+            <div class="card-body">
+                <div class="card-body-text">Users</div>
+                <div class="card-body-value">32</div>
+                <div class="card-body-text">Visits in Past 30 Days</div>
+                <div class="card-body-value">100</div>
+                <div class="card-body-text">Most Popular Page</div>
+                <div class="card-body-value">UK Economic Forecasts</div>
+            </div>
+            <a class="card-more">More ></a>
+        </div>
+        <div class="card card12">
+            <div class="card-header blue-gradient subcard1-1">Melior</div>
+            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
+            <div class="card-body">
+                <div class="card-body-text">Users</div>
+                <div class="card-body-value">32</div>
+                <div class="card-body-text">Visits in Past 30 Days</div>
+                <div class="card-body-value">100</div>
+                <div class="card-body-text">Most Popular Page</div>
+                <div class="card-body-value">UK Economic Forecasts</div>
+            </div>
+            <a class="card-more">More ></a>
+        </div>
+    </section>
+</div>
+
+
+<script>
+    Chart.defaults.global.elements.point.borderWidth = 0.1;
+    Chart.defaults.global.elements.point.backgroundColor = "rgba(14,110,183, 0.4)";
+    Chart.defaults.global.defaultFontColor = "#555";
+    Chart.defaults.global.defaultFontFamily = "Roboto";
+
+    var ctx = document.getElementById('myChart2').getContext('2d');
+    var myChart1 = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['18/1', '19/1', '20/1', '21/1', '22/1', '23/1', '24/1'],
+            datasets: [
+                {
+                    label: 'Total Daily Visits',
+                    data: [80, 85, 55, 66, 49, 51, 55],
+                    backgroundColor: ['rgba(14,110,183, 0.4)'],
+                    borderColor: ['rgba(14,110,183, 1)'],
+                    borderWidth: 1,
+                },
+            ],
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Visits in Past Week',
+                fontFamily: "Roboto",
+                fontStyle: "bold"
+            },
+            responsive: false,
+
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+                backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                titleFontSize: 12,
+                titleFontColor: 'rgba(74, 114, 167, 1)',
+                bodyFontColor: '#000',
+                bodyFontSize: 12,
+                bodySpacing: 9,
+                displayColors: false,
+                borderColor: "rgba(74, 114, 167, 0.5)",
+                borderWidth: "1"
+            },
+            legend: {
+                display: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true,
+            },
+            scales: {
+                xAxes: [
+                    {
+                        gridLines: {
+                            drawOnChartArea: false,
+                            color: "#000",
+                            tickMarkLength: 2,
+                        },
+                        ticks: {
+                            fontColor: "#000",
+                            fontSize: 11,
+                            padding: 5
+                        }
+                    },
+                ],
+                yAxes: [
+                    {
+                        gridLines: {
+                            drawOnChartArea: false,
+                            color: "#333",
+                            tickMarkLength: 0,
+                        },
+                        ticks: {
+                            fontColor: "#000",
+                            fontSize: 11,
+                            maxTicksLimit: 6,
+                            padding: 5
+                        }
+                    }
+
+                ],
+                x: {
+                    display: true,
+
+                },
+                y: {
+                    display: true,
+                },
+            },
+        },
+    });
+
+    var ctx = document.getElementById('myChart1').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [
+                {
+                    label: 'Total Visits',
+                    data: [110, 114, 106, 99, 112, 103],
+                    backgroundColor: [
+                        'rgba(0, 70, 145, 1)',
+                        'rgba(216, 43, 128, 1)',
+                        'rgba(203, 18, 62, 1)',
+                        'rgba(242, 141, 48, 1)',
+                        'rgba(3, 157, 74, 1)',
+                        'rgba(253, 217, 0, 1)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 0)',
+                        'rgba(54, 162, 235, 0)',
+                        'rgba(255, 206, 86, 0)',
+                        'rgba(75, 192, 192, 0)',
+                        'rgba(153, 102, 255, 0)',
+                        'rgba(255, 159, 64, 0)',
+                    ],
+                    borderWidth: 1,
+                    barThickness: 20,
+                },
+            ],
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Visits in Past 6 Months',
+                fontFamily: "Roboto",
+                fontStyle: "bold"
+            },
+            responsive: false,
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+                backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                titleFontSize: 14,
+                titleFontColor: 'rgba(110, 31, 119, 1)',
+                bodyFontColor: '#000',
+                bodyFontSize: 12,
+                bodySpacing: 9,
+                displayColors: false,
+                borderColor: "rgba(110, 31, 119, 0.5)",
+                borderWidth: "1"
+            },
+            legend: {
+                display: false,
+            },
+            scales: {
+                xAxes: [
+                    {
+                        gridLines: {
+                            drawOnChartArea: false,
+                            color: "#000",
+                            tickMarkLength: 0,
+                        },
+                        ticks: {
+                            fontColor: "#000",
+                            fontSize: 11,
+                            padding: 5
+                        }
+                    },
+                ],
+                yAxes:
+                    [
+                        {
+                            gridLines: {
+                                drawOnChartArea: false,
+                                color: "#333",
+                                tickMarkLength: 0,
+                            },
+                            ticks: {
+                                fontColor: "#000",
+                                fontSize: 11,
+                                padding: 5,
+                                maxTicksLimit: 6,
+                            }
+                        }
+
+                    ]
+            },
+        },
+    });
+</script>

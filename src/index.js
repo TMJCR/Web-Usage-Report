@@ -26,15 +26,18 @@ app.use('/public/', express.static(publicDirectoryPath));
 const port = process.env.PORT || 3000;
 
 app.get('/', async (req, res) => {
+  //
   const users = await User.find({});
+  console.log(req.query);
+
   res.render('index', {
-    title: 'App',
+    day: req.query.day,
   });
 });
 
-app.get('/*', (req, res) => {
-  res.redirect('/');
-});
+// app.get('/*', (req, res) => {
+//   res.redirect('/');
+// });
 
 app.listen(port, () => {
   console.log(`App is up and running on ${port}`);
