@@ -286,7 +286,7 @@ const createVisitData = async (numOfRecordsToAdd) => {
   const users = await getUserIDsFromDB();
   for (let i = 0; i < numOfRecordsToAdd; i++) {
     const user = users[generateRandom(users.length - 1)];
-    const randomMonth = generateRandom(5);
+    const randomMonth = generateRandom(5) - 1;
     const randomDay = generateRandom(27);
     const randomHour = generateRandom(23);
     const randomMin = generateRandom(59);
@@ -325,7 +325,7 @@ const createVisitData = async (numOfRecordsToAdd) => {
   }
 };
 
-createVisitData(2000);
+// createVisitData(2800);
 
 const findVisit = async (id) => {
   const user = await User.findById(id);

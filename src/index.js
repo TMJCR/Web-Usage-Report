@@ -1,17 +1,23 @@
+const path = require('path');
 const express = require('express');
+
 require('../db/mongoose');
-const LandingPage = require('../views/landingPage.js');
-require('./seed');
+// require('./seed');
 
 const User = require('../models/user');
 const Visits = require('../models/visit');
+
 const app = express();
+
+app.set('view engine', 'hbs');
+app.use(express.static(path.join(__dirname, '../public')));
+
 const port = process.env.PORT || 3000;
 
 app.get('/', async (req, res) => {
   const users = await User.find({});
 
-  res.send('test');
+  res.render('index');
 });
 
 app.listen(port, () => {
