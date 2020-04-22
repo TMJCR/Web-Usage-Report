@@ -30,7 +30,7 @@
     </section>
     <section id="charts">
         <div class="chart chart1">
-            {{>downloadGauge day=day}}
+            {{>downloadGauge downloads=downloads}}
         </div>
 
         <div class="chart chart2">
@@ -52,9 +52,11 @@
                 <div class="subchart4-3">MAY {{day}} 2020</div>
                 <form action="/" method="Get">
                     <select name="month">
-                        <option value="Jan">Jan</option>
-                        <option value="Feb">Feb</option>
-                        <option value="Mar">Mar</option>
+                        <option value="0">Jan</option>
+                        <option value="1">Feb</option>
+                        <option value="2">Mar</option>
+                        <option value="3">Apr</option>
+                        <option value="4">May</option>
                     </select>
                     <select name="day">
                         <option value="11">11</option>
@@ -64,7 +66,7 @@
                     <select name="year">
                         <option value="2020">2020</option>
                     </select>
-                    <button>submit</button>
+                    <button class="submit purple-gradient">Submit</button>
                 </form>
             </div>
         </div>
@@ -107,166 +109,41 @@
             <div class="icon-subtext">Social Media</div>
         </div>
     </section>
-    <section id="cards">
-        <div class="card card1">
-            <div class="card-header blue-gradient subcard1-1">Aandeweil</div>
-            <div class="card-image"><img src="Aandewiel.png" alt="" /></div>
-            <div class="card-body">
-                <div class="card-body-text">Users</div>
-                <div class="card-body-value">32</div>
-                <div class="card-body-text">Visits in Past 30 Days</div>
-                <div class="card-body-value">100</div>
-                <div class="card-body-text">Most Popular Page</div>
-                <div class="card-body-value">UK Economic Forecasts</div>
-            </div>
-            <a class="card-more">More ></a>
+    <section id="lists">
+        <div class="left-list">
+            <div class="list-title">Visits To Most Popular Pages</div>
+            <ul class="list">
+                <li><span class="rank">1 </span> UK Economic Forecasts<span class="rank-value">(350)</span></li>
+                <li><span class="rank">2 </span> EU Economic Forecasts<span class="rank-value">(280)</span></li>
+                <li><span class="rank">3 </span> Credit Market Forecasts<span class="rank-value">(268)</span></li>
+                <li><span class="rank">4 </span> Housing Market Forecasts<span class="rank-value">(111)</span></li>
+                <li><span class="rank">5 </span> Household Income Forecasts<span class="rank-value">(52)</span></li>
+            </ul>
         </div>
-        <div class="card card2">
-            <div class="card-header blue-gradient subcard1-1">Temple</div>
-            <div class="subcard1-2"><img src="Temple.png" alt="" /></div>
-            <div class="card-body">
-                <div class="card-body-text">Users</div>
-                <div class="card-body-value">32</div>
-                <div class="card-body-text">Visits in Past 30 Days</div>
-                <div class="card-body-value">100</div>
-                <div class="card-body-text">Most Popular Page</div>
-                <div class="card-body-value">UK Economic Forecasts</div>
-            </div>
+        <div class="right-list">
+            <div class="list-title">Visits by Company</div>
+            <ul class="list">
+                <li><span class="rank">1 </span> <img src="../../public/img/Aandewiel.png" alt="">Aandeweil
+                    Investments<span class="rank-value">(420)</span></li>
+                <li><span class="rank">2 </span> <img src="../../public/img/Arbor.png" alt="">Arbor Capital<span
+                        class="rank-value">(356)</span></li>
+                <li><span class="rank">3 </span> <img src="../../public/img/Melior.png" alt="">Melior Capital<span
+                        class="rank-value">(220)</span></li>
+                <li><span class="rank">4 </span> <img src="../../public/img/Temple.png" alt="">Temple Securities<span
+                        class="rank-value">(111)</span></li>
+                <li><span class="rank">5 </span> <img src="../../public/img/Melior.png" alt="">Melior Capital<span
+                        class="rank-value">(16)</span></li>
 
-            <a class="card-more">More ></a>
-        </div>
-        <div class="card card3">
-            <div class="card-header blue-gradient subcard1-1">Arbor</div>
-            <div class="subcard1-2"><img src="Arbor.png" alt="" /></div>
-            <div class="card-body">
-                <div class="card-body-text">Users</div>
-                <div class="card-body-value">32</div>
-                <div class="card-body-text">Visits in Past 30 Days</div>
-                <div class="card-body-value">100</div>
-                <div class="card-body-text">Most Popular Page</div>
-                <div class="card-body-value">UK Economic Forecasts</div>
-            </div>
 
-            <a class="card-more">More ></a>
-        </div>
-        <div class="card card4">
-            <div class="card-header blue-gradient subcard1-1">Melior</div>
-            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
-            <div class="card-body">
-                <div class="card-body-text">Users</div>
-                <div class="card-body-value">32</div>
-                <div class="card-body-text">Visits in Past 30 Days</div>
-                <div class="card-body-value">100</div>
-                <div class="card-body-text">Most Popular Page</div>
-                <div class="card-body-value">UK Economic Forecasts</div>
-            </div>
-            <a class="card-more">More ></a>
-        </div>
-        <div class="card card5">
-            <div class="card-header blue-gradient subcard1-1">Melior</div>
-            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
-            <div class="card-body">
-                <div class="card-body-text">Users</div>
-                <div class="card-body-value">32</div>
-                <div class="card-body-text">Visits in Past 30 Days</div>
-                <div class="card-body-value">100</div>
-                <div class="card-body-text">Most Popular Page</div>
-                <div class="card-body-value">UK Economic Forecasts</div>
-            </div>
-            <a class="card-more">More ></a>
-        </div>
-        <div class="card card6">
-            <div class="card-header blue-gradient subcard1-1">Melior</div>
-            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
-            <div class="card-body">
-                <div class="card-body-text">Users</div>
-                <div class="card-body-value">32</div>
-                <div class="card-body-text">Visits in Past 30 Days</div>
-                <div class="card-body-value">100</div>
-                <div class="card-body-text">Most Popular Page</div>
-                <div class="card-body-value">UK Economic Forecasts</div>
-            </div>
-            <a class="card-more">More ></a>
-        </div>
-        <div class="card card7">
-            <div class="card-header blue-gradient subcard1-1">Melior</div>
-            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
-            <div class="card-body">
-                <div class="card-body-text">Users</div>
-                <div class="card-body-value">32</div>
-                <div class="card-body-text">Visits in Past 30 Days</div>
-                <div class="card-body-value">100</div>
-                <div class="card-body-text">Most Popular Page</div>
-                <div class="card-body-value">UK Economic Forecasts</div>
-            </div>
-            <a class="card-more">More ></a>
-        </div>
-        <div class="card card8">
-            <div class="card-header blue-gradient subcard1-1">Melior</div>
-            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
-            <div class="card-body">
-                <div class="card-body-text">Users</div>
-                <div class="card-body-value">32</div>
-                <div class="card-body-text">Visits in Past 30 Days</div>
-                <div class="card-body-value">100</div>
-                <div class="card-body-text">Most Popular Page</div>
-                <div class="card-body-value">UK Economic Forecasts</div>
-            </div>
-            <a class="card-more">More ></a>
-        </div>
-        <div class="card card9">
-            <div class="card-header blue-gradient subcard1-1">Melior</div>
-            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
-            <div class="card-body">
-                <div class="card-body-text">Users</div>
-                <div class="card-body-value">32</div>
-                <div class="card-body-text">Visits in Past 30 Days</div>
-                <div class="card-body-value">100</div>
-                <div class="card-body-text">Most Popular Page</div>
-                <div class="card-body-value">UK Economic Forecasts</div>
-            </div>
-            <a class="card-more">More ></a>
-        </div>
-        <div class="card card10">
-            <div class="card-header blue-gradient subcard1-1">Melior</div>
-            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
-            <div class="card-body">
-                <div class="card-body-text">Users</div>
-                <div class="card-body-value">32</div>
-                <div class="card-body-text">Visits in Past 30 Days</div>
-                <div class="card-body-value">100</div>
-                <div class="card-body-text">Most Popular Page</div>
-                <div class="card-body-value">UK Economic Forecasts</div>
-            </div>
-            <a class="card-more">More ></a>
-        </div>
-        <div class="card card11">
-            <div class="card-header blue-gradient subcard1-1">Melior</div>
-            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
-            <div class="card-body">
-                <div class="card-body-text">Users</div>
-                <div class="card-body-value">32</div>
-                <div class="card-body-text">Visits in Past 30 Days</div>
-                <div class="card-body-value">100</div>
-                <div class="card-body-text">Most Popular Page</div>
-                <div class="card-body-value">UK Economic Forecasts</div>
-            </div>
-            <a class="card-more">More ></a>
-        </div>
-        <div class="card card12">
-            <div class="card-header blue-gradient subcard1-1">Melior</div>
-            <div class="subcard1-2"><img src="Melior.png" alt="" /></div>
-            <div class="card-body">
-                <div class="card-body-text">Users</div>
-                <div class="card-body-value">32</div>
-                <div class="card-body-text">Visits in Past 30 Days</div>
-                <div class="card-body-value">100</div>
-                <div class="card-body-text">Most Popular Page</div>
-                <div class="card-body-value">UK Economic Forecasts</div>
-            </div>
-            <a class="card-more">More ></a>
+
+
+
+
+            </ul>
         </div>
     </section>
+
+
 </div>
 
 
