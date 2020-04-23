@@ -1,5 +1,7 @@
 const User = require('../models/user');
 const Visit = require('../models/visit');
+const Summary = require('../models/summary');
+require('../db/mongoose');
 
 const companies = [
   'Arbor Capital Management',
@@ -230,6 +232,22 @@ const pages = [
   'Commodities',
   'Promotional',
 ];
+
+const monthNames = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
 // page, userid, time
 
 const generateRandom = (rangeEnd) => {
@@ -272,18 +290,43 @@ var randomChoiceWithWeightMulti = (choices, weights) => {
 //   user.save();
 // }
 
-const getUserIDsFromDB = async () => {
+const getUsersFromDB = async () => {
   const users = await User.find({});
-  const userIDs = [];
-  for (user of users) {
-    userIDs.push(user._id);
+  return users;
+};
+
+const getVisitsFromDB = async () => {
+  const visits = await Visit.find({});
+
+  return visits;
+};
+
+const addToMonthlyTotal = async (visit) => {
+  const year = visit.time.getFullYear();
+  const monthIndex = visit.time.getMonth();
+  const monthName = monthNames[monthIndex];
+
+  const monthlyTotal = await Summary.findOne({ year, monthName });
+
+  if (monthlyTotal) {
+    await Summary.findByIdAndUpdate(
+      { _id: monthlyTotal._id },
+      { $inc: { value: 1 } }
+    );
+  } else {
+    const newMonthlyTotal = new Summary({
+      year,
+      monthIndex,
+      monthName,
+      value: 1,
+    });
+    newMonthlyTotal.save();
   }
-  return userIDs;
 };
 
 //Generate a random number of website visits associated with a random user
 const createVisitData = async (numOfRecordsToAdd) => {
-  const users = await getUserIDsFromDB();
+  const users = await getUsersFromDB();
   for (let i = 0; i < numOfRecordsToAdd; i++) {
     const user = users[generateRandom(users.length - 1)];
     const randomMonth = generateRandom(5) - 1;
@@ -312,6 +355,10 @@ const createVisitData = async (numOfRecordsToAdd) => {
       method,
       visitLength,
       userId: user._id,
+      company: user.company,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
     });
     const userID = visit.userId;
 
@@ -322,10 +369,12 @@ const createVisitData = async (numOfRecordsToAdd) => {
       },
       { $push: { visits: visit._id } }
     );
+
+    await addToMonthlyTotal(visit);
   }
 };
 
-// createVisitData(2800);
+createVisitData(1000);
 
 const findVisit = async (id) => {
   const user = await User.findById(id);

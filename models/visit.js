@@ -26,6 +26,18 @@ const Visit = mongoose.model('Visit', {
   visitLength: {
     type: Number,
   },
+  company: {
+    type: String,
+  },
+  email: {
+    type: String,
+  },
+  firstName: {
+    type: String,
+  },
+  lastName: {
+    type: String,
+  },
 });
 
 module.exports = Visit;

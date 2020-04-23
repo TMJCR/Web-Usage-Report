@@ -76,38 +76,34 @@ app.get('/', async (req, res) => {
       100
   );
 
-  const pageCounts = visits.reduce((sum, current) => {
-    if (typeof sum[current.page] === 'undefined') {
-      sum[current.page] = 1;
-    } else {
-      sum[current.page] += 1;
-    }
+  const getCountFromDatabase = (collection, key) => {
+    const sum = collection.reduce((sum, current) => {
+      if (typeof sum[current[key]] === 'undefined') {
+        sum[current[`${key}`]] = 1;
+      } else {
+        sum[current[`${key}`]] += 1;
+      }
+      return sum;
+    }, {});
     return sum;
-  }, {});
-  // console.log(pageCounts);
-  const pairs = Object.keys(pageCounts).map((key) => {
-    return [key, pageCounts[key]];
-  });
-  console.log(pairs);
-  pairs2 = pairs.sort(function (a, b) {
-    return a[1] - b[1];
-  });
-  // const pairs = pageCounts.sort((a, b) => {
-  //   return a.value - b.value;
-  // });
-  console.log(pairs2);
+  };
 
-  console.log(
-    downloads,
-    subscribers,
-    nonSubscribers,
-    mobile,
-    desktop,
-    link,
-    url,
-    social,
-    advert
-  );
+  const rankVariable = (collection) => {
+    return Object.keys(collection)
+      .map((key) => {
+        return [key, collection[key]];
+      })
+      .sort((a, b) => b[1] - a[1]);
+  };
+
+  const pageCounts = getCountFromDatabase(visits, 'page');
+  const rankedPages = rankVariable(pageCounts);
+  const top5Pages = rankedPages.slice(0, 5);
+
+  const companyCounts = getCountFromDatabase(visits, 'company');
+  const rankedCompanies = rankVariable(companyCounts);
+  const top5Companies = rankedCompanies.slice(0, 5);
+  console.log(top5Companies);
 
   res.render('index', {
     data: visits,
