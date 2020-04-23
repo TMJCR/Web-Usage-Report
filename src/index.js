@@ -42,10 +42,16 @@ app.get('/', async (req, res) => {
 
   reportStartDate = utils.generateReportStartDate(reportDate, 30);
 
-  const visits = await Visits.find({
+  let visits = await Visits.find({
     time: { $gte: reportStartDate, $lte: reportDate },
   }).sort({ time: 1 });
 
+  const totalVisits = visits.length;
+  const visitors = visits.map((visit) => visit.userId);
+  const uniqueVisits = [...new Set(visitors)];
+  const averageVisitLength =
+    visits.reduce((sum, visit) => sum + visit.visitLength, 0) / visits.length;
+  console.log(averageVisitLength);
   const downloads = visits.filter((visit) => visit.download).length;
   const subscribers = visits.filter((visit) => visit.subscriber).length;
   const nonSubscribers = visits.filter((visit) => !visit.subscriber).length;
@@ -69,6 +75,27 @@ app.get('/', async (req, res) => {
       visits.length) *
       100
   );
+
+  const pageCounts = visits.reduce((sum, current) => {
+    if (typeof sum[current.page] === 'undefined') {
+      sum[current.page] = 1;
+    } else {
+      sum[current.page] += 1;
+    }
+    return sum;
+  }, {});
+  // console.log(pageCounts);
+  const pairs = Object.keys(pageCounts).map((key) => {
+    return [key, pageCounts[key]];
+  });
+  console.log(pairs);
+  pairs2 = pairs.sort(function (a, b) {
+    return a[1] - b[1];
+  });
+  // const pairs = pageCounts.sort((a, b) => {
+  //   return a.value - b.value;
+  // });
+  console.log(pairs2);
 
   console.log(
     downloads,

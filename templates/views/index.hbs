@@ -16,11 +16,12 @@
 
 <body>
     {{>header}}
-    {{>main day=day}}
-    {{>footer}}
     {{#each data}}
     <li>{{this}}</li>
     {{/each}}
+    {{>main day=day}}
+    {{>footer}}
+
 </body>
 
 </html>
