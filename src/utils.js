@@ -15,14 +15,34 @@ const filterAndCount = (
   );
 };
 
-function generateReportStartDate(reportDate, lengthOfReportInDays) {
+const getCountFromDatabase = (collection, key) => {
+  const sum = collection.reduce((sum, current) => {
+    if (typeof sum[current[key]] === 'undefined') {
+      sum[current[`${key}`]] = 1;
+    } else {
+      sum[current[`${key}`]] += 1;
+    }
+    return sum;
+  }, {});
+  return sum;
+};
+
+const rankVariable = (collection) => {
+  return Object.keys(collection)
+    .map((key) => {
+      return [key, collection[key]];
+    })
+    .sort((a, b) => b[1] - a[1]);
+};
+
+const generateReportStartDate = (reportDate, lengthOfReportInDays) => {
   const secondsInADay = 86400;
   let reportStartDate = new Date();
   reportStartDate.setTime(
     reportDate.getTime() - lengthOfReportInDays * secondsInADay * 1000
   );
   return reportStartDate;
-}
+};
 
 const getVisits = async (model, reportStartDate, reportDate) => {
   return await model
@@ -49,32 +69,15 @@ const generateReportData = (visits) => {
   const url = filterAndCount(visits, 'method', 'Url', true);
   const social = filterAndCount(visits, 'method', 'Social', true);
   const advert = filterAndCount(visits, 'method', 'Advert', true);
-  console.log(
-    'totalVisits',
-    totalVisits,
-    'uniqeVisits',
-    uniqueVisits,
-    'averageVisitLength',
-    averageVisitLength,
-    'downloads',
-    downloads,
-    'subscribers',
-    subscribers,
-    'nonSubscribers',
-    nonSubscribers,
-    'mobile',
-    mobile,
-    'desktop',
-    desktop,
-    'link',
-    link,
-    'url',
-    url,
-    'social',
-    social,
-    'advert',
-    advert
-  );
+
+  const pageCounts = getCountFromDatabase(visits, 'page');
+  const rankedPages = rankVariable(pageCounts);
+  const top5Pages = rankedPages.slice(0, 5);
+
+  const companyCounts = getCountFromDatabase(visits, 'company');
+  const rankedCompanies = rankVariable(companyCounts);
+  const top5Companies = rankedCompanies.slice(0, 5);
+  console.log(top5Pages);
   return {
     totalVisits,
     uniqueVisits,
@@ -88,8 +91,8 @@ const generateReportData = (visits) => {
     url,
     social,
     advert,
-    // top5Pages,
-    // top5Companies,
+    top5Pages,
+    top5Companies,
   };
 };
 

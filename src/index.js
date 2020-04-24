@@ -20,6 +20,9 @@ const partialsPath = path.join(__dirname, '../templates/partials');
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);
 hbs.registerPartials(partialsPath);
+hbs.registerHelper('inc', (value, options) => {
+  return parseInt(value) + 1;
+});
 
 //Setup static directory to serve
 app.use('/public/', express.static(publicDirectoryPath));
@@ -43,34 +46,6 @@ app.get('/', async (req, res) => {
   const reportStartDate = utils.generateReportStartDate(reportDate, 30);
   const visits = await utils.getVisits(Visits, reportStartDate, reportDate);
   const reportData = utils.generateReportData(visits);
-
-  const getCountFromDatabase = (collection, key) => {
-    const sum = collection.reduce((sum, current) => {
-      if (typeof sum[current[key]] === 'undefined') {
-        sum[current[`${key}`]] = 1;
-      } else {
-        sum[current[`${key}`]] += 1;
-      }
-      return sum;
-    }, {});
-    return sum;
-  };
-
-  const rankVariable = (collection) => {
-    return Object.keys(collection)
-      .map((key) => {
-        return [key, collection[key]];
-      })
-      .sort((a, b) => b[1] - a[1]);
-  };
-
-  const pageCounts = getCountFromDatabase(visits, 'page');
-  const rankedPages = rankVariable(pageCounts);
-  const top5Pages = rankedPages.slice(0, 5);
-
-  const companyCounts = getCountFromDatabase(visits, 'company');
-  const rankedCompanies = rankVariable(companyCounts);
-  const top5Companies = rankedCompanies.slice(0, 5);
 
   res.render('index', { data: reportData, displayDate });
 });

@@ -113,11 +113,15 @@
         <div class="left-list">
             <div class="list-title">Visits To Most Popular Pages</div>
             <ul class="list">
-                <li><span class="rank">1 </span> UK Economic Forecasts<span class="rank-value">(350)</span></li>
-                <li><span class="rank">2 </span> EU Economic Forecasts<span class="rank-value">(280)</span></li>
+                {{#each data.top5Pages}}
+                <li><span class="rank">{{inc @index}} </span> {{this.[0]}}<span class="rank-value">({{this.[1]}})</span>
+                </li>
+                {{/each}}
+
+                {{!-- <li><span class="rank">2 </span> EU Economic Forecasts<span class="rank-value">(280)</span></li>
                 <li><span class="rank">3 </span> Credit Market Forecasts<span class="rank-value">(268)</span></li>
                 <li><span class="rank">4 </span> Housing Market Forecasts<span class="rank-value">(111)</span></li>
-                <li><span class="rank">5 </span> Household Income Forecasts<span class="rank-value">(52)</span></li>
+                <li><span class="rank">5 </span> Household Income Forecasts<span class="rank-value">(52)</span></li> --}}
             </ul>
         </div>
         <div class="right-list">
