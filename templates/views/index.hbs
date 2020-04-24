@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="../../public/css/styles.css" />
     <link rel="stylesheet" href="../../public/css/chartStyles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet" />
@@ -16,10 +17,10 @@
 
 <body>
     {{>header}}
-    {{#each data}}
+    {{!-- {{#each data}}
     <li>{{this}}</li>
-    {{/each}}
-    {{>main day=day}}
+    {{/each}} --}}
+    {{>main data=data}}
     {{>footer}}
 
 </body>

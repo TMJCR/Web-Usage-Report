@@ -36,8 +36,9 @@ const generateReportData = (visits) => {
   const totalVisits = visits.length;
   const visitors = visits.map((visit) => visit.userId);
   const uniqueVisits = [...new Set(visitors)].length;
-  const averageVisitLength =
-    visits.reduce((sum, visit) => sum + visit.visitLength, 0) / visits.length;
+  const averageVisitLength = Math.round(
+    visits.reduce((sum, visit) => sum + visit.visitLength, 0) / visits.length
+  );
 
   const downloads = filterAndCount(visits, 'download', true);
   const subscribers = filterAndCount(visits, 'subscriber', true);

@@ -39,7 +39,7 @@ app.get('/', async (req, res) => {
   if (reportDate > todaysDate) {
     reportDate = todaysDate;
   }
-
+  const displayDate = reportDate.toDateString().split(' ').slice(1).join(' ');
   const reportStartDate = utils.generateReportStartDate(reportDate, 30);
   const visits = await utils.getVisits(Visits, reportStartDate, reportDate);
   const reportData = utils.generateReportData(visits);
@@ -72,7 +72,7 @@ app.get('/', async (req, res) => {
   const rankedCompanies = rankVariable(companyCounts);
   const top5Companies = rankedCompanies.slice(0, 5);
 
-  res.render('index', { data: reportData });
+  res.render('index', { data: reportData, displayDate });
 });
 
 // app.get('/*', (req, res) => {
