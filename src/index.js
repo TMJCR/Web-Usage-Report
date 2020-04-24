@@ -40,40 +40,9 @@ app.get('/', async (req, res) => {
     reportDate = todaysDate;
   }
 
-  reportStartDate = utils.generateReportStartDate(reportDate, 30);
-
-  let visits = await Visits.find({
-    time: { $gte: reportStartDate, $lte: reportDate },
-  }).sort({ time: 1 });
-
-  const totalVisits = visits.length;
-  const visitors = visits.map((visit) => visit.userId);
-  const uniqueVisits = [...new Set(visitors)].length;
-  const averageVisitLength =
-    visits.reduce((sum, visit) => sum + visit.visitLength, 0) / visits.length;
-  const downloads = visits.filter((visit) => visit.download).length;
-  const subscribers = visits.filter((visit) => visit.subscriber).length;
-  const nonSubscribers = visits.filter((visit) => !visit.subscriber).length;
-  const mobile = visits.filter((visit) => visit.device === 'Mobile').length;
-  const desktop = visits.filter((visit) => visit.device === 'Desktop').length;
-  const link = Math.round(
-    (visits.filter((visit) => visit.method === 'Link').length / visits.length) *
-      100
-  );
-  const url = Math.round(
-    (visits.filter((visit) => visit.method === 'Url').length / visits.length) *
-      100
-  );
-  const social = Math.round(
-    (visits.filter((visit) => visit.method === 'Social').length /
-      visits.length) *
-      100
-  );
-  const advert = Math.round(
-    (visits.filter((visit) => visit.method === 'Advert').length /
-      visits.length) *
-      100
-  );
+  const reportStartDate = utils.generateReportStartDate(reportDate, 30);
+  const visits = await utils.getVisits(Visits, reportStartDate, reportDate);
+  const reportData = utils.generateReportData(visits);
 
   const getCountFromDatabase = (collection, key) => {
     const sum = collection.reduce((sum, current) => {
@@ -103,22 +72,7 @@ app.get('/', async (req, res) => {
   const rankedCompanies = rankVariable(companyCounts);
   const top5Companies = rankedCompanies.slice(0, 5);
 
-  res.render('index', {
-    totalVisits,
-    uniqueVisits,
-    averageVisitLength,
-    downloads,
-    subscribers,
-    nonSubscribers,
-    mobile,
-    desktop,
-    link,
-    url,
-    social,
-    advert,
-    top5Pages,
-    top5Companies,
-  });
+  res.render('index', { data: reportData });
 });
 
 // app.get('/*', (req, res) => {
