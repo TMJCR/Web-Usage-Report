@@ -48,10 +48,9 @@ app.get('/', async (req, res) => {
 
   const totalVisits = visits.length;
   const visitors = visits.map((visit) => visit.userId);
-  const uniqueVisits = [...new Set(visitors)];
+  const uniqueVisits = [...new Set(visitors)].length;
   const averageVisitLength =
     visits.reduce((sum, visit) => sum + visit.visitLength, 0) / visits.length;
-  console.log(averageVisitLength);
   const downloads = visits.filter((visit) => visit.download).length;
   const subscribers = visits.filter((visit) => visit.subscriber).length;
   const nonSubscribers = visits.filter((visit) => !visit.subscriber).length;
@@ -103,11 +102,22 @@ app.get('/', async (req, res) => {
   const companyCounts = getCountFromDatabase(visits, 'company');
   const rankedCompanies = rankVariable(companyCounts);
   const top5Companies = rankedCompanies.slice(0, 5);
-  console.log(top5Companies);
 
   res.render('index', {
-    data: visits,
+    totalVisits,
+    uniqueVisits,
+    averageVisitLength,
     downloads,
+    subscribers,
+    nonSubscribers,
+    mobile,
+    desktop,
+    link,
+    url,
+    social,
+    advert,
+    top5Pages,
+    top5Companies,
   });
 });
 
