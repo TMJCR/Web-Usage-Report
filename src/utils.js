@@ -27,6 +27,19 @@ const getCountFromDatabase = (collection, key) => {
   return sum;
 };
 
+const getDownloadColor = (numOfDownloads) => {
+  if (numOfDownloads <= 10) {
+    return 'st11';
+  } else if (numOfDownloads <= 20) {
+    return 'st9';
+  } else if (numOfDownloads <= 50) {
+    return 'st7';
+  } else if (numOfDownloads <= 100) {
+    return 'st8';
+  } else {
+    return 'st10';
+  }
+};
 const rankVariable = (collection) => {
   return Object.keys(collection)
     .map((key) => {
@@ -60,7 +73,16 @@ const generateReportData = (visits) => {
     visits.reduce((sum, visit) => sum + visit.visitLength, 0) / visits.length
   );
 
-  const downloads = filterAndCount(visits, 'download', true);
+  const numOfDownloads = filterAndCount(visits, 'download', true);
+  const downloads = { singleDigit: '', doubleDigit: '', tripleDigit: '' };
+  if (numOfDownloads.toString().length === 1) {
+    downloads.singleDigit = numOfDownloads;
+  } else if (numOfDownloads.toString().length === 2) {
+    downloads.doubleDigit = numOfDownloads;
+  } else {
+    downloads.tripleDigit = numOfDownloads;
+  }
+  const downloadColor = getDownloadColor(numOfDownloads);
   const subscribers = filterAndCount(visits, 'subscriber', true);
   const nonSubscribers = filterAndCount(visits, 'subscriber', false);
   const mobile = filterAndCount(visits, 'device', 'Mobile', true);
@@ -77,12 +99,13 @@ const generateReportData = (visits) => {
   const companyCounts = getCountFromDatabase(visits, 'company');
   const rankedCompanies = rankVariable(companyCounts);
   const top5Companies = rankedCompanies.slice(0, 5);
-  console.log(top5Pages);
+
   return {
     totalVisits,
     uniqueVisits,
     averageVisitLength,
     downloads,
+    downloadColor,
     subscribers,
     nonSubscribers,
     mobile,

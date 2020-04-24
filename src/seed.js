@@ -374,7 +374,7 @@ const createVisitData = async (numOfRecordsToAdd) => {
   }
 };
 
-createVisitData(1000);
+createVisitData(5);
 
 const findVisit = async (id) => {
   const user = await User.findById(id);

@@ -383,6 +383,11 @@ footer .about {
 
 }
 
+.downloadText {
+    transition: all 1.5s;
+    opacity: 0;
+}
+
 /* 
  */
 /*  */

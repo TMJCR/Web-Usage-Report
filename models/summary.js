@@ -8,4 +8,3 @@ const Summary = mongoose.model('Summary', {
 });
 
 module.exports = Summary;
-// 2020: [{Jan:15},{Feb:14}]
