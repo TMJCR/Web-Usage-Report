@@ -34,11 +34,11 @@
         </div>
 
         <div class="chart chart2">
-            <canvas id="myChart1" width="250" height="200"></canvas>
+            <canvas id="monthlyChart" width="250" height="200"></canvas>
         </div>
 
         <div class="chart chart3">
-            <canvas id="myChart2" width="250" height="200"></canvas>
+            <canvas id="weeklyChart" width="250" height="200"></canvas>
         </div>
 
         <div class="chart chart4">
@@ -46,9 +46,6 @@
                 Date of Report
             </div>
             <div class="chart-box">
-                <!-- <div class="subchart4-2">UK ECONOMIC FORECASTS</div>
-              <div class="subchart4-3">125</div>
-              <div class="hit-count"> Visits in Previous 30 Days</div> -->
                 <div class="subchart4-3">{{displayDate}}</div>
                 <form action="/" method="Get">
                     <select name="month">
@@ -131,190 +128,10 @@
             </ul>
         </div>
     </section>
-
-
 </div>
-
-
 <script>
-    Chart.defaults.global.elements.point.borderWidth = 0.1;
-    Chart.defaults.global.elements.point.backgroundColor = "rgba(14,110,183, 0.4)";
-    Chart.defaults.global.defaultFontColor = "#555";
-    Chart.defaults.global.defaultFontFamily = "Roboto";
-
-    var ctx = document.getElementById('myChart2').getContext('2d');
-    var myChart1 = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['18/1', '19/1', '20/1', '21/1', '22/1', '23/1', '24/1'],
-            datasets: [
-                {
-                    label: 'Total Daily Visits',
-                    data: [80, 85, 55, 66, 49, 51, 55],
-                    backgroundColor: ['rgba(14,110,183, 0.4)'],
-                    borderColor: ['rgba(14,110,183, 1)'],
-                    borderWidth: 1,
-                },
-            ],
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Visits in Past Week',
-                fontFamily: "Roboto",
-                fontStyle: "bold"
-            },
-            responsive: false,
-
-            tooltips: {
-                mode: 'index',
-                intersect: false,
-                backgroundColor: 'rgba(255, 255, 255, 0.5)',
-                titleFontSize: 12,
-                titleFontColor: 'rgba(74, 114, 167, 1)',
-                bodyFontColor: '#000',
-                bodyFontSize: 12,
-                bodySpacing: 9,
-                displayColors: false,
-                borderColor: "rgba(74, 114, 167, 0.5)",
-                borderWidth: "1"
-            },
-            legend: {
-                display: false,
-            },
-            hover: {
-                mode: 'nearest',
-                intersect: true,
-            },
-            scales: {
-                xAxes: [
-                    {
-                        gridLines: {
-                            drawOnChartArea: false,
-                            color: "#000",
-                            tickMarkLength: 2,
-                        },
-                        ticks: {
-                            fontColor: "#000",
-                            fontSize: 11,
-                            padding: 5
-                        }
-                    },
-                ],
-                yAxes: [
-                    {
-                        gridLines: {
-                            drawOnChartArea: false,
-                            color: "#333",
-                            tickMarkLength: 0,
-                        },
-                        ticks: {
-                            fontColor: "#000",
-                            fontSize: 11,
-                            maxTicksLimit: 6,
-                            padding: 5
-                        }
-                    }
-
-                ],
-                x: {
-                    display: true,
-
-                },
-                y: {
-                    display: true,
-                },
-            },
-        },
-    });
-
-    var ctx = document.getElementById('myChart1').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [
-                {
-                    label: 'Total Visits',
-                    data: [110, 114, 106, 99, 112, 103],
-                    backgroundColor: [
-                        'rgba(0, 70, 145, 1)',
-                        'rgba(216, 43, 128, 1)',
-                        'rgba(203, 18, 62, 1)',
-                        'rgba(242, 141, 48, 1)',
-                        'rgba(3, 157, 74, 1)',
-                        'rgba(253, 217, 0, 1)',
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 0)',
-                        'rgba(54, 162, 235, 0)',
-                        'rgba(255, 206, 86, 0)',
-                        'rgba(75, 192, 192, 0)',
-                        'rgba(153, 102, 255, 0)',
-                        'rgba(255, 159, 64, 0)',
-                    ],
-                    borderWidth: 1,
-                    barThickness: 20,
-                },
-            ],
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Visits in Past 6 Months',
-                fontFamily: "Roboto",
-                fontStyle: "bold"
-            },
-            responsive: false,
-            tooltips: {
-                mode: 'index',
-                intersect: false,
-                backgroundColor: 'rgba(255, 255, 255, 0.5)',
-                titleFontSize: 14,
-                titleFontColor: 'rgba(110, 31, 119, 1)',
-                bodyFontColor: '#000',
-                bodyFontSize: 12,
-                bodySpacing: 9,
-                displayColors: false,
-                borderColor: "rgba(110, 31, 119, 0.5)",
-                borderWidth: "1"
-            },
-            legend: {
-                display: false,
-            },
-            scales: {
-                xAxes: [
-                    {
-                        gridLines: {
-                            drawOnChartArea: false,
-                            color: "#000",
-                            tickMarkLength: 0,
-                        },
-                        ticks: {
-                            fontColor: "#000",
-                            fontSize: 11,
-                            padding: 5
-                        }
-                    },
-                ],
-                yAxes:
-                    [
-                        {
-                            gridLines: {
-                                drawOnChartArea: false,
-                                color: "#333",
-                                tickMarkLength: 0,
-                            },
-                            ticks: {
-                                fontColor: "#000",
-                                fontSize: 11,
-                                padding: 5,
-                                maxTicksLimit: 6,
-                            }
-                        }
-
-                    ]
-            },
-        },
-    });
+    const monthlylabels = decodeURI("{{ chartData.monthlyLabels }}").split(",")
+    const weeklyLabels = decodeURI("{{chartData.weeklyLabels}}").split(",")
+    updateWeeklyChart(weeklyLabels, [{{ chartData.weeklyData }}]);
+    updateMonthlyChart(monthlylabels, [{{ chartData.monthlyData }}]);
 </script>

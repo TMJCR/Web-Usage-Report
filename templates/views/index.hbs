@@ -10,15 +10,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <script src="../../public/js/charts.js"></script>
 
-
-    <title>Document</title>
+    <title>Website Usage Report</title>
 </head>
 
 <body>
     {{>header}}
-    {{>main data=data}}
+    {{>main data=data chartData=chartData}}
     {{>footer}}
+
     <script src="../../public/js/app.js"></script>
 </body>
 
