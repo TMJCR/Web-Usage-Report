@@ -67,6 +67,7 @@ const generateReportStartDate = (reportDate, lengthOfReportInDays) => {
   reportStartDate.setTime(
     reportDate.getTime() - lengthOfReportInDays * secondsInADay * 1000
   );
+
   return reportStartDate;
 };
 

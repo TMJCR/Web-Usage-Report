@@ -8,7 +8,7 @@ require('../db/mongoose');
 
 const User = require('../models/user');
 const Visits = require('../models/visit');
-
+const Summaries = require('../models/summary');
 const app = express();
 
 // Define paths for Express config
@@ -32,11 +32,11 @@ const port = process.env.PORT || 3000;
 app.get('/', async (req, res) => {
   const { year, month, day } = req.query;
   let reportDate;
-  const todaysDate = new Date(2020, 4, 31); //would be today in the real app
+  const todaysDate = new Date(Date.UTC(2020, 4, 31, 23, 59)); //would be today in the real app
   if (!(year && month && day)) {
     reportDate = todaysDate;
   } else {
-    reportDate = new Date(year, month, day);
+    reportDate = new Date(Date.UTC(year, month, day, 23, 59));
   }
   if (reportDate > todaysDate) {
     reportDate = todaysDate;
@@ -46,18 +46,30 @@ app.get('/', async (req, res) => {
   const visits = await utils.getVisits(Visits, reportStartDate, reportDate);
   const reportData = utils.generateReportData(visits);
 
-  const previous7DaysStartDate = utils.generateReportStartDate(reportDate, 7);
-  const previous7DaysVisits = await utils.getVisits(
+  const prev7DaysStartDate = utils.generateReportStartDate(reportDate, 7);
+  const prev7DaysVisits = await utils.getVisits(
     Visits,
-    previous7DaysStartDate,
+    prev7DaysStartDate,
     reportDate
   );
-  const visitsByDay = utils.getWeeklyData(previous7DaysVisits);
+
+  const visitsByDay = utils.getWeeklyData(prev7DaysVisits);
+
+  const prevYearStartDate = utils.generateReportStartDate(reportDate, 365);
+  const prevMonthlyVisits = await utils.getVisits(
+    Summaries,
+    prevYearStartDate,
+    reportDate
+  );
+  const prev6MonthVisits = prevMonthlyVisits.slice(-6);
 
   const weeklyLabels = Object.keys(visitsByDay);
   const weeklyData = Object.values(visitsByDay);
-  const monthlyLabels = [`Jan`, 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-  const monthlyData = [110, 114, 106, 99, 112, 103];
+  // const monthlyLabels = [`Jan`, 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+  // const monthlyData = [110, 114, 106, 99, 112, 103];
+  const monthlyLabels = prev6MonthVisits.map((visit) => visit.monthName);
+  const monthlyData = prev6MonthVisits.map((visit) => visit.value);
+
   const chartData = { weeklyLabels, weeklyData, monthlyLabels, monthlyData };
 
   res.render('index', {

@@ -305,6 +305,7 @@ const addToMonthlyTotal = async (visit) => {
   const year = visit.time.getFullYear();
   const monthIndex = visit.time.getMonth();
   const monthName = monthNames[monthIndex];
+  const time = new Date(year, monthIndex, 1);
 
   const monthlyTotal = await Summary.findOne({ year, monthName });
 
@@ -315,6 +316,7 @@ const addToMonthlyTotal = async (visit) => {
     );
   } else {
     const newMonthlyTotal = new Summary({
+      time,
       year,
       monthIndex,
       monthName,
@@ -373,8 +375,8 @@ const createVisitData = async (numOfRecordsToAdd) => {
     await addToMonthlyTotal(visit);
   }
 };
-
-createVisitData(5);
+console.log('added');
+createVisitData(2000);
 
 const findVisit = async (id) => {
   const user = await User.findById(id);
