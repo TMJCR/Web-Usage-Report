@@ -45,8 +45,17 @@ app.get('/', async (req, res) => {
   const reportStartDate = utils.generateReportStartDate(reportDate, 30);
   const visits = await utils.getVisits(Visits, reportStartDate, reportDate);
   const reportData = utils.generateReportData(visits);
-  const weeklyLabels = ['18/1', '19/1', '20/1', '21/1', '22/1', '23/1', '24/1'];
-  const weeklyData = [80, 85, 55, 66, 49, 51, 55];
+
+  const previous7DaysStartDate = utils.generateReportStartDate(reportDate, 7);
+  const previous7DaysVisits = await utils.getVisits(
+    Visits,
+    previous7DaysStartDate,
+    reportDate
+  );
+  const visitsByDay = utils.getWeeklyData(previous7DaysVisits);
+
+  const weeklyLabels = Object.keys(visitsByDay);
+  const weeklyData = Object.values(visitsByDay);
   const monthlyLabels = [`Jan`, 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
   const monthlyData = [110, 114, 106, 99, 112, 103];
   const chartData = { weeklyLabels, weeklyData, monthlyLabels, monthlyData };

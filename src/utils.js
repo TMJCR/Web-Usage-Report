@@ -27,6 +27,19 @@ const getCountFromDatabase = (collection, key) => {
   return sum;
 };
 
+const getWeeklyData = (collection) => {
+  const visitsByDay = collection.reduce((sum, current) => {
+    const date = `${current.time.getDate()}/${current.time.getMonth() + 1}`;
+    if (typeof sum[date] === 'undefined') {
+      sum[date] = 1;
+    } else {
+      sum[date] += 1;
+    }
+    return sum;
+  }, {});
+  return visitsByDay;
+};
+
 const getDownloadColor = (numOfDownloads) => {
   if (numOfDownloads <= 10) {
     return 'st11';
@@ -123,4 +136,5 @@ module.exports = {
   generateReportStartDate,
   getVisits,
   generateReportData,
+  getWeeklyData,
 };
