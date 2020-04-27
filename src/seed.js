@@ -234,21 +234,19 @@ const pages = [
 ];
 
 const monthNames = [
-  'January',
-  'February',
-  'March',
-  'April',
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
   'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
 ];
-
-// page, userid, time
 
 const generateRandom = (rangeEnd) => {
   return Math.ceil(Math.random() * rangeEnd);

@@ -50,23 +50,27 @@ nav img {
     margin-right: auto;
 }
 
-.nav2 {}
 
-.nav3 {}
-
-#stats {
-    grid-column: 2 /12;
+#date-picker {
+    grid-column: 1 /13;
     grid-row: 1/2;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+}
+
+#stats {
+    display: grid;
+    align-self: center;
+    justify-self: center;
+    max-width: 320px;
+
 }
 
 .stat {
     padding: 10px;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: center;
-    align-content: center;
+    align-items: center;
 }
 
 .stat svg {
@@ -75,6 +79,7 @@ nav img {
     align-self: center;
     color: rgba(74, 114, 167, 1);
     font-size: 3rem;
+    width: 1.1em !important;
 }
 
 .stat-text-value {
@@ -83,7 +88,7 @@ nav img {
 }
 
 .stat-text {
-    font-size: 1.0rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: rgb(29, 79, 145);
 }
@@ -93,6 +98,8 @@ nav img {
     font-weight: 500;
     color: rgba(173, 22, 132, 1);
 }
+
+
 
 #charts {
     padding: 20px;
@@ -148,7 +155,7 @@ nav img {
 }
 
 .subchart4-3 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 300;
     color: rgba(173, 22, 132, 1);
 }
@@ -159,9 +166,19 @@ nav img {
     color: rgba(173, 22, 132, 1);
 }
 
-#charts .submit {
+.submit {
     color: #fff;
     border-radius: 6px;
+    padding: 2px;
+    margin: 2px;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+button:active {
+    transform: scale(0.95);
 }
 
 .blue-gradient {
@@ -405,7 +422,7 @@ footer .about {
 /*  */
 
 /*  */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1050px) {
     #cards {
         gap: 30px;
         grid-template-columns: repeat(3, 1fr);
@@ -415,21 +432,33 @@ footer .about {
 
         grid-template-columns: repeat(2, 1fr);
     }
+
+    #charts {
+        grid-template-columns: repeat(2, 1fr);
+        grid-column: 2 /12;
+    }
+
+    .chart1 {
+        min-width: 320px;
+    }
+
+    .chart {
+        justify-self: center;
+    }
+
 }
 
 @media screen and (max-width: 750px) {
-    #cards {
-        grid-template-columns: repeat(2, 1fr);
+    #charts {
+        grid-template-columns: repeat(1, 1fr);
     }
 
     #footer {
 
         grid-template-columns: repeat(1, 1fr);
     }
-}
 
-@media screen and (max-width: 500px) {
-    #cards {
+    #lists {
         grid-template-columns: repeat(1, 1fr);
     }
 }

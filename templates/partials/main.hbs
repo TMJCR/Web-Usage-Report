@@ -1,46 +1,5 @@
 <div id="content">
-    <section id="stats">
-        <div class="stat stat-1">
-            <i class="stat-icon fas fa-desktop fa-lg"></i>
-            <div class="stat-text-value">
-                <div class="stat-text">
-                    Total Visits
-                </div>
-                <div class="stat-value">({{data.totalVisits}})</div>
-            </div>
-        </div>
-        <div class="stat stat-2">
-            <i class="stat-icon fas fa-laptop-house fa-lg"></i>
-            <div class="stat-text-value">
-                <div class="stat-text">
-                    Unique Visits
-                </div>
-                <div class="stat-value">({{data.uniqueVisits}})</div>
-            </div>
-        </div>
-        <div class="stat stat-3">
-            <i class="stat-icon far fa-clock fa-lg"></i>
-            <div class="stat-text-value">
-                <div class="stat-text">
-                    Avg. Visit Length
-                </div>
-                <div class="stat-value">({{data.averageVisitLength}} s)</div>
-            </div>
-        </div>
-    </section>
-    <section id="charts">
-        <div class="chart chart1">
-            {{>downloadGauge downloads=data.downloads downloadColor=data.downloadColor}}
-        </div>
-
-        <div class="chart chart2">
-            <canvas id="monthlyChart" width="250" height="200"></canvas>
-        </div>
-
-        <div class="chart chart3">
-            <canvas id="weeklyChart" width="250" height="200"></canvas>
-        </div>
-
+    <section id="date-picker">
         <div class="chart chart4">
             <div class="chart-header purple-gradient subchart4-1">
                 Date of Report
@@ -48,17 +7,17 @@
             <div class="chart-box">
                 <div class="subchart4-3">{{displayDate}}</div>
                 <form action="/" method="Get">
-                    <select name="month">
+                    <select id="month-selection" name="month">
                         <option value="0">Jan</option>
                         <option value="1">Feb</option>
                         <option value="2">Mar</option>
                         <option value="3">Apr</option>
                         <option value="4">May</option>
                     </select>
-                    <select name="day">
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
+                    <select id="day-selection" name="day">
+                        {{#each days}}
+                        <option value="{{inc @index}} ">{{this}}</option>
+                        {{/each}}
                     </select>
                     <select name="year">
                         <option value="2020">2020</option>
@@ -66,6 +25,49 @@
                     <button class="submit purple-gradient">Submit</button>
                 </form>
             </div>
+        </div>
+    </section>
+
+    <section id="charts">
+        <div class="chart chart1">
+            {{>downloadGauge downloads=data.downloads downloadColor=data.downloadColor}}
+        </div>
+
+        <div id="stats">
+            <div class="stat stat-1">
+                <i class="stat-icon fas fa-desktop fa-lg"></i>
+
+                <div class="stat-text">
+                    Total Visits
+                </div>
+                <div class="stat-value">({{data.totalVisits}})</div>
+
+            </div>
+            <div class="stat stat-2">
+                <i class="stat-icon fas fa-laptop-house fa-lg"></i>
+
+                <div class="stat-text">
+                    Unique Visits
+                </div>
+                <div class="stat-value">({{data.uniqueVisits}})</div>
+
+            </div>
+            <div class="stat stat-3">
+                <i class="stat-icon far fa-clock fa-lg"></i>
+
+                <div class="stat-text">
+                    Avg. Visit Length
+                </div>
+                <div class="stat-value">({{data.averageVisitLength}} s)</div>
+
+            </div>
+        </div>
+        <div class="chart chart2">
+            <canvas id="monthlyChart" width="320" height="300"></canvas>
+        </div>
+
+        <div class="chart chart3">
+            <canvas id="weeklyChart" width="320" height="300"></canvas>
         </div>
     </section>
     <section id="icons">

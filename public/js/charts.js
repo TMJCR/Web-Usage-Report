@@ -117,6 +117,7 @@ const updateMonthlyChart = (labels, data) => {
           ],
           borderWidth: 1,
           barThickness: 20,
+          minBarHeight: 22,
         },
       ],
     },

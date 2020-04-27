@@ -54,28 +54,28 @@ app.get('/', async (req, res) => {
   );
 
   const visitsByDay = utils.getWeeklyData(prev7DaysVisits);
-
   const prevYearStartDate = utils.generateReportStartDate(reportDate, 365);
   const prevMonthlyVisits = await utils.getVisits(
     Summaries,
     prevYearStartDate,
     reportDate
   );
-  const prev6MonthVisits = prevMonthlyVisits.slice(-6);
 
   const weeklyLabels = Object.keys(visitsByDay);
   const weeklyData = Object.values(visitsByDay);
-  // const monthlyLabels = [`Jan`, 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-  // const monthlyData = [110, 114, 106, 99, 112, 103];
+
+  const prev6MonthVisits = prevMonthlyVisits.slice(-6);
   const monthlyLabels = prev6MonthVisits.map((visit) => visit.monthName);
   const monthlyData = prev6MonthVisits.map((visit) => visit.value);
 
   const chartData = { weeklyLabels, weeklyData, monthlyLabels, monthlyData };
+  const days = Array.from(Array(31).keys(), (n) => n + 1);
 
   res.render('index', {
     data: reportData,
     displayDate,
     chartData,
+    days,
   });
 });
 
