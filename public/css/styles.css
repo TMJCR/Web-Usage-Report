@@ -13,6 +13,7 @@ body {
     color: rgb(108, 111, 115);
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     text-align: center;
+    margin: 0;
 }
 
 #content {
@@ -52,7 +53,7 @@ nav img {
 
 
 #date-picker {
-    grid-column: 1 /13;
+    grid-column: 1/13;
     grid-row: 1;
     display: grid;
 }
@@ -71,10 +72,17 @@ form label {
 
 .date-box {
     margin-top: 10px;
-    box-shadow: 1px 2px 10px rgba(100, 100, 100, 0.2);
+    background: #f3f3f3;
     border-radius: 0.5rem;
     align-self: center;
     padding: 10px;
+    border-bottom: 1px solid #f3f3f3;
+    display: flex;
+}
+
+.date-form {
+    margin-left: auto;
+    align-self: center;
 }
 
 .date-box select {
@@ -474,6 +482,10 @@ footer .about {
 
         #lists {
             grid-template-columns: repeat(1, 1fr);
+        }
+
+        .date {
+            font-size: 1.7rem;
         }
 
     }
