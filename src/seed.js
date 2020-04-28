@@ -329,12 +329,12 @@ const createVisitData = async (numOfRecordsToAdd) => {
   const users = await getUsersFromDB();
   for (let i = 0; i < numOfRecordsToAdd; i++) {
     const user = users[generateRandom(users.length - 1)];
-    const randomMonth = generateRandom(5) - 1;
-    const randomDay = generateRandom(27);
+    const randomMonth = generateRandom(12) - 1;
+    const randomDay = generateRandom(31);
     const randomHour = generateRandom(23);
     const randomMin = generateRandom(59);
     const page = pages[generateRandom(pages.length - 1)];
-    const time = new Date(2020, randomMonth, randomDay, randomHour, randomMin);
+    const time = new Date(2019, randomMonth, randomDay, randomHour, randomMin);
     const download = randomChoiceWithWeightMulti([true, false], [0.13, 0.87]);
     const subscriber = randomChoiceWithWeightMulti([true, false], [0.98, 0.02]);
     const device = randomChoiceWithWeightMulti(

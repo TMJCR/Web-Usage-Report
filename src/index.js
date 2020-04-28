@@ -32,21 +32,22 @@ const port = process.env.PORT || 3000;
 app.get('/', async (req, res) => {
   const { year, month, day } = req.query;
   let reportDate;
-  const todaysDate = new Date(Date.UTC(2020, 4, 31, 23, 59)); //would be today in the real app
+  const todaysDate = new Date(Date.UTC(2020, 4, 31, 12, 00)); //would be today in the real app
   if (!(year && month && day)) {
     reportDate = todaysDate;
   } else {
-    reportDate = new Date(Date.UTC(year, month, day, 23, 59));
+    reportDate = new Date(Date.UTC(year, month, day, 12));
   }
   if (reportDate > todaysDate) {
     reportDate = todaysDate;
   }
   const displayDate = reportDate.toDateString().split(' ').slice(1).join(' ');
+
   const reportStartDate = utils.generateReportStartDate(reportDate, 30);
   const visits = await utils.getVisits(Visits, reportStartDate, reportDate);
   const reportData = utils.generateReportData(visits);
 
-  const prev7DaysStartDate = utils.generateReportStartDate(reportDate, 7);
+  const prev7DaysStartDate = utils.generateReportStartDate(reportDate, 6);
   const prev7DaysVisits = await utils.getVisits(
     Visits,
     prev7DaysStartDate,

@@ -3,8 +3,24 @@ Chart.defaults.global.elements.point.backgroundColor = 'rgba(14,110,183, 0.4)';
 Chart.defaults.global.defaultFontColor = '#555';
 Chart.defaults.global.defaultFontFamily = 'Roboto';
 
+const setCanvasWidthandFontSize = (canvasName) => {
+  const screenWidth = window.innerWidth;
+  const canvas = document.getElementById(canvasName);
+  if (screenWidth < 750) {
+    canvas.width = 350;
+    canvas.height = 275;
+    return 14;
+  } else if (screenWidth < 1050) {
+    canvas.width = 300;
+    canvas.height = 250;
+    return 12;
+  }
+  return 11;
+};
+
 const updateWeeklyChart = (labels, data) => {
   const ctx = document.getElementById('weeklyChart').getContext('2d');
+  const calculatedFontSize = setCanvasWidthandFontSize('weeklyChart');
   const chart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -58,7 +74,7 @@ const updateWeeklyChart = (labels, data) => {
             },
             ticks: {
               fontColor: '#000',
-              fontSize: 11,
+              fontSize: calculatedFontSize,
               padding: 5,
             },
           },
@@ -72,7 +88,7 @@ const updateWeeklyChart = (labels, data) => {
             },
             ticks: {
               fontColor: '#000',
-              fontSize: 11,
+              fontSize: calculatedFontSize,
               maxTicksLimit: 6,
               padding: 5,
             },
@@ -91,6 +107,7 @@ const updateWeeklyChart = (labels, data) => {
 
 const updateMonthlyChart = (labels, data) => {
   const ctx = document.getElementById('monthlyChart').getContext('2d');
+  const calculatedFontSize = setCanvasWidthandFontSize('monthlyChart');
   const chart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -116,8 +133,8 @@ const updateMonthlyChart = (labels, data) => {
             'rgba(255, 159, 64, 0)',
           ],
           borderWidth: 1,
-          barThickness: 20,
-          minBarHeight: 22,
+          barThickness: calculatedFontSize * 2,
+          minBarLength: 22,
         },
       ],
     },
@@ -155,7 +172,7 @@ const updateMonthlyChart = (labels, data) => {
             },
             ticks: {
               fontColor: '#000',
-              fontSize: 11,
+              fontSize: calculatedFontSize,
               padding: 5,
             },
           },
@@ -169,7 +186,7 @@ const updateMonthlyChart = (labels, data) => {
             },
             ticks: {
               fontColor: '#000',
-              fontSize: 11,
+              fontSize: calculatedFontSize,
               padding: 5,
               maxTicksLimit: 6,
             },

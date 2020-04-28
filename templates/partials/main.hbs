@@ -1,12 +1,10 @@
 <div id="content">
     <section id="date-picker">
-        <div class="chart chart4">
-            <div class="chart-header purple-gradient subchart4-1">
-                Date of Report
-            </div>
-            <div class="chart-box">
-                <div class="subchart4-3">{{displayDate}}</div>
+        <div class="">
+            <div class="date-box">
+                <div id="date" class="date">{{displayDate}}</div>
                 <form action="/" method="Get">
+                    <label for="month">Report Date: </label>
                     <select id="month-selection" name="month">
                         <option value="0">Jan</option>
                         <option value="1">Feb</option>
@@ -63,11 +61,11 @@
             </div>
         </div>
         <div class="chart chart2">
-            <canvas id="monthlyChart" width="320" height="300"></canvas>
+            <canvas id="monthlyChart" width="250" height="200"></canvas>
         </div>
 
         <div class="chart chart3">
-            <canvas id="weeklyChart" width="320" height="300"></canvas>
+            <canvas id="weeklyChart" width="250" height="200"></canvas>
         </div>
     </section>
     <section id="icons">
