@@ -15,11 +15,23 @@ const setCanvasWidthandFontSize = (canvasName) => {
     canvas.height = 250;
     return 12;
   }
+  canvas.width = 250;
+  canvas.height = 200;
   return 11;
 };
 
+const removeOldChartContext = (container, chartId) => {
+  const canvasContainer = document.getElementById(container);
+  const currentCanvas = document.getElementById(chartId);
+  currentCanvas.remove();
+  const newCanvas = document.createElement('canvas');
+  newCanvas.id = chartId;
+  canvasContainer.appendChild(newCanvas);
+};
+
 const updateWeeklyChart = (labels, data) => {
-  const ctx = document.getElementById('weeklyChart').getContext('2d');
+  const canvas = document.getElementById('weeklyChart');
+  const ctx = canvas.getContext('2d');
   const calculatedFontSize = setCanvasWidthandFontSize('weeklyChart');
   const chart = new Chart(ctx, {
     type: 'line',

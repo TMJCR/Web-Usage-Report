@@ -37,7 +37,6 @@ const getWeeklyData = (collection) => {
     }
     return sum;
   }, {});
-  console.log(visitsByDay);
   return visitsByDay;
 };
 

@@ -60,11 +60,11 @@
 
             </div>
         </div>
-        <div class="chart chart2">
+        <div id="monthlyChartContainer" class="chart chart2">
             <canvas id="monthlyChart" width="250" height="200"></canvas>
         </div>
 
-        <div class="chart chart3">
+        <div id="weeklyChartContainer" class="chart chart3">
             <canvas id="weeklyChart" width="250" height="200"></canvas>
         </div>
     </section>
@@ -134,4 +134,28 @@
     const weeklyLabels = decodeURI("{{chartData.weeklyLabels}}").split(",")
     updateWeeklyChart(weeklyLabels, [{{ chartData.weeklyData }}]);
     updateMonthlyChart(monthlylabels, [{{ chartData.monthlyData }}]);
+    let chartSize;
+
+    const removeAndUpdateChart = () => {
+        removeOldChartContext("weeklyChartContainer", "weeklyChart");
+        updateWeeklyChart(weeklyLabels, [{{ chartData.weeklyData }}]);
+    removeOldChartContext("monthlyChartContainer", "monthlyChart");
+    updateMonthlyChart(monthlylabels, [{{ chartData.monthlyData }}]);
+    }
+
+    const updateChart = () => {
+        const screenWidth = window.innerWidth;
+        if (screenWidth < 750 && chartSize != "small") {
+            removeAndUpdateChart();
+            chartSize = "small";
+        } else if (screenWidth < 1050 && screenWidth > 750 && chartSize != "medium") {
+            removeAndUpdateChart();
+            chartSize = "medium";
+        } else if (screenWidth >= 1050 && chartSize != "large") {
+            removeAndUpdateChart();
+            chartSize = "large";
+        }
+    }
+
+    window.onresize = updateChart;
 </script>
