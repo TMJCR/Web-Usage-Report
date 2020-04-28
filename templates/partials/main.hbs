@@ -3,7 +3,7 @@
         <div class="">
             <div class="date-box">
                 <div id="date" class="date">{{displayDate}}</div>
-                <form class="date-form" action="/" method="Get">
+                <form id="date-form" class="date-form">
                     <label for="month">Report Date: </label>
                     <select id="month-selection" name="month">
                         <option value="0">Jan</option>
@@ -17,7 +17,7 @@
                         <option value="{{inc @index}} ">{{this}}</option>
                         {{/each}}
                     </select>
-                    <select name="year">
+                    <select id="year-selection" name="year">
                         <option value="2020">2020</option>
                     </select>
                     <button class="submit purple-gradient">Update</button>

@@ -49,3 +49,21 @@ const updateSelectedDateFields = () => {
 };
 
 updateSelectedDateFields();
+
+const dateForm = document.querySelector('#date-form');
+dateForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const day = document.querySelector('#day-selection').selectedOptions[0].value;
+  const month = document.querySelector('#month-selection').selectedOptions[0]
+    .value;
+  const year = document.querySelector('#year-selection').selectedOptions[0]
+    .value;
+  fetch('http://localhost:3000/data/?month=4&day=31+&year=2020').then(
+    (response) => {
+      response.json().then((data) => {
+        console.log(data);
+      });
+    }
+  );
+  console.log(day, month, year);
+});
