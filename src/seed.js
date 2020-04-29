@@ -280,7 +280,7 @@ var randomChoiceWithWeightMulti = (choices, weights) => {
 
 // for (name of names) {
 //   const [firstName, lastName] = name.split(' ');
-//   const randomSelection = generateRandom(companies.length - 1);
+//   const randomSelection = generateRandom(companies.length)-1;
 //   const company = companies[randomSelection];
 //   const companyEmail = company.split(' ').join('');
 //   const email = `${firstName}.${lastName}@${companyEmail}.com`;
