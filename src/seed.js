@@ -11,7 +11,7 @@ const companies = [
   'Nexum Group',
   'Hatton & Partners',
   'Temple Securities',
-  'CTIX International',
+  'CITX International',
   'ATCG',
   'Senoku Securities',
   'Aandewiel Investments',
