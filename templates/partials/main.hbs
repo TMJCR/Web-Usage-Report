@@ -38,7 +38,8 @@
                 <div class="stat-text">
                     Total Visits
                 </div>
-                <div class="stat-value">(<span id="totalVisits-update" class="update">{{data.totalVisits}}</span>)</div>
+                <div class="stat-value shake">(<span id="totalVisits-update" class="update">{{data.totalVisits}}</span>)
+                </div>
 
             </div>
             <div class="stat stat-2">
@@ -47,7 +48,8 @@
                 <div class="stat-text">
                     Unique Visits
                 </div>
-                <div class="stat-value">(<span id="uniqueVisits-update" class="update">{{data.uniqueVisits}}</span>)
+                <div class="stat-value shake">(<span id="uniqueVisits-update"
+                        class="update">{{data.uniqueVisits}}</span>)
                 </div>
 
             </div>
@@ -58,7 +60,7 @@
                     Avg. Visit Length
                 </div>
 
-                <div class="stat-value">(<span id="averageVisitLength-update"
+                <div class="stat-value shake">(<span id="averageVisitLength-update"
                         class="update">{{data.averageVisitLength}}</span> s)</div>
             </div>
         </div>
@@ -75,8 +77,9 @@
             <i class="fas fa-user fa-lg"></i>
             <i class="far fa-user fa-lg"></i>
 
-            <div class="icon-text"><span id="subscribers-update" class="update">{{data.subscribers}}</span></div>
-            <div class="icon-text"><span id="nonSubscribers-update" class="update">{{data.nonSubscribers}}</span></div>
+            <div class="icon-text shake"><span id="subscribers-update" class="update">{{data.subscribers}}</span></div>
+            <div class="icon-text shake"><span id="nonSubscribers-update" class="update">{{data.nonSubscribers}}</span>
+            </div>
 
             <div class="icon-subtext">Subscriber</div>
             <div class="icon-subtext">Non-Subscriber</div>
@@ -85,8 +88,8 @@
             <i class="fas fa-mobile-alt fa-lg"></i>
             <i class="fas fa-desktop fa-lg"></i>
 
-            <div class="icon-text"><span id="mobile-update" class="update">{{data.mobile}}</span>%</div>
-            <div class="icon-text"><span id="desktop-update" class="update">{{data.desktop}}</span>%</div>
+            <div class="icon-text shake"><span id="mobile-update" class="update">{{data.mobile}}</span>%</div>
+            <div class="icon-text shake"><span id="desktop-update" class="update">{{data.desktop}}</span>%</div>
 
             <div class="icon-subtext">Mobile</div>
             <div class="icon-subtext">Desktop</div>
@@ -97,10 +100,10 @@
             <i class="fas fa-ad fa-lg"></i>
             <i class="fab fa-twitter-square fa-lg"></i>
 
-            <div class="icon-text"><span id="url-update" class="update">{{data.url}}</span>%</div>
-            <div class="icon-text"><span id="link-update" class="update">{{data.link}}</span>%</div>
-            <div class="icon-text"><span id="advert-update" class="update">{{data.advert}}</span>%</div>
-            <div class="icon-text"><span id="social-update" class="update">{{data.social}}</span>%</div>
+            <div class="icon-text shake"><span id="url-update" class="update">{{data.url}}</span>%</div>
+            <div class="icon-text shake"><span id="link-update" class="update">{{data.link}}</span>%</div>
+            <div class="icon-text shake"><span id="advert-update" class="update">{{data.advert}}</span>%</div>
+            <div class="icon-text shake"><span id="social-update" class="update">{{data.social}}</span>%</div>
 
             <div class="icon-subtext">URL</div>
             <div class="icon-subtext">Email Link</div>
@@ -115,7 +118,8 @@
                 {{#each data.top5Pages}}
                 <li><span class="rank">{{inc @index}} </span>
                     <span id="top5Pages-{{inc @index}}-page" class="popular-page">{{this.[0]}}</span>
-                    <span id="top5Pages-{{inc @index}}-value" class="popular-value rank-value">({{this.[1]}})</span>
+                    <span id="top5Pages-{{inc @index}}-value"
+                        class="popular-value rank-value shake">({{this.[1]}})</span>
                 </li>
                 {{/each}}
             </ul>
@@ -128,7 +132,7 @@
                     <img src="../../public/img/{{this.[0]}}.png" alt=""><span id="top5Companies-{{inc @index}}-page"
                         class="company-page">{{this.[0]}}</span>
                     <span id=" top5Companies-{{inc @index}}-value"
-                        class="company-value rank-value">({{this.[1]}})</span>
+                        class="company-value rank-value shake">({{this.[1]}})</span>
                 </li>
                 {{/each}}
 

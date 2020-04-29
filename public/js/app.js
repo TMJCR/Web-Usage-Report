@@ -114,6 +114,7 @@ const updateChartDataAndCharts = (data) => {
   monthlyLabels = data.chartData.weeklyLabels;
   removeAndUpdateCharts();
 };
+
 const updateReport = (data) => {
   updateValues(data);
   updateDownloadText(data);
@@ -123,4 +124,10 @@ const updateReport = (data) => {
   updateTop5List(data, '.company-value', 'top5Companies');
   updateDisplayDate(data);
   updateChartDataAndCharts(data);
+  document.querySelectorAll('.shake').forEach((d) => {
+    d.classList.add('shaker');
+    setTimeout(() => {
+      d.classList.remove('shaker');
+    }, 200);
+  });
 };
