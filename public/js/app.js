@@ -42,13 +42,15 @@ monthList.onchange = function () {
   }
 };
 
-const updateSelectedDateFields = () => {
-  const date = document.querySelector('#date').innerText.split(' ');
-  monthList.options.selectedIndex = monthNames.indexOf(date[0]);
-  dayList.options.selectedIndex = date[1] - 1;
-};
+// const updateSelectedDateFields = () => {
+//   const date = document
+//     .querySelector('#displayDate-update')
+//     .innerText.split(' ');
+//   monthList.options.selectedIndex = monthNames.indexOf(date[0]);
+//   dayList.options.selectedIndex = date[1] - 1;
+// };
 
-updateSelectedDateFields();
+// updateSelectedDateFields();
 
 const dateForm = document.querySelector('#date-form');
 dateForm.addEventListener('submit', (e) => {
@@ -58,12 +60,67 @@ dateForm.addEventListener('submit', (e) => {
     .value;
   const year = document.querySelector('#year-selection').selectedOptions[0]
     .value;
-  fetch('http://localhost:3000/data/?month=4&day=31+&year=2020').then(
-    (response) => {
-      response.json().then((data) => {
-        console.log(data);
-      });
-    }
-  );
-  console.log(day, month, year);
+  fetch(
+    `http://localhost:3000/data/?month=${month}&day=${day}+&year=${year}`
+  ).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+      } else {
+        updateReport(data);
+      }
+    });
+  });
 });
+
+const updateDownloadText = (data) => {
+  document.querySelectorAll('.downloadText').forEach((item) => {
+    const classToRemove = item.classList.value.split(' ').pop();
+    item.classList.remove(classToRemove);
+    item.classList.add(data.data.downloadColor);
+    item.innerHTML = data.data.downloads[item.id];
+  });
+};
+
+const updateValues = (data) => {
+  const updates = document.querySelectorAll('.update');
+  for (update of updates) {
+    const item = update.id.split('-')[0];
+    update.innerText = data.data[item];
+  }
+};
+
+const updateTop5List = (data, listClass, variableName) => {
+  let resultIndex;
+  if (listClass.split('-')[1] === 'page') {
+    resultIndex = 0;
+  } else {
+    resultIndex = 1;
+  }
+  const item = document.querySelectorAll(listClass);
+  item.forEach((item, index) => {
+    item.innerHTML = data.data[variableName][index][resultIndex];
+  });
+};
+
+const updateDisplayDate = (data) => {
+  const date = document.querySelector('#displayDate-update');
+  date.innerHTML = data.displayDate;
+};
+
+const updateChartDataAndCharts = (data) => {
+  weeklyData = data.chartData.weeklyData;
+  monthlyData = data.chartData.weeklyData;
+  weeklyLabels = data.chartData.weeklyLabels;
+  monthlyLabels = data.chartData.weeklyLabels;
+  removeAndUpdateCharts();
+};
+const updateReport = (data) => {
+  updateValues(data);
+  updateDownloadText(data);
+  updateTop5List(data, '.popular-page', 'top5Pages');
+  updateTop5List(data, '.popular-value', 'top5Pages');
+  updateTop5List(data, '.company-page', 'top5Companies');
+  updateTop5List(data, '.company-value', 'top5Companies');
+  updateDisplayDate(data);
+  updateChartDataAndCharts(data);
+};
