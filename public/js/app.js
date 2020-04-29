@@ -128,6 +128,6 @@ const updateReport = (data) => {
     d.classList.add('shaker');
     setTimeout(() => {
       d.classList.remove('shaker');
-    }, 200);
+    }, 1000);
   });
 };
