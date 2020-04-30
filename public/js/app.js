@@ -74,7 +74,11 @@ const updateTop10List = (data, listClass, variableName) => {
   }
   const item = document.querySelectorAll(listClass);
   item.forEach((item, index) => {
-    item.innerHTML = `(${data.data[variableName][index][resultIndex]})`;
+    if (resultIndex === 1) {
+      item.innerHTML = `(${data.data[variableName][index][resultIndex]})`;
+    } else {
+      item.innerHTML = data.data[variableName][index][resultIndex];
+    }
   });
 };
 
