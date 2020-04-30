@@ -31,42 +31,12 @@ const port = process.env.PORT || 3000;
 
 app.get('/', async (req, res) => {
   const reportDate = new Date(Date.UTC(2020, 4, 31, 12, 00)); //would be today in the real app
-  const displayDate = reportDate.toDateString().split(' ').slice(1).join(' ');
-
-  const reportStartDate = utils.generateReportStartDate(reportDate, 30);
-  const visits = await utils.getVisits(Visits, reportStartDate, reportDate);
-  const reportData = utils.generateReportData(visits);
-
-  const prev7DaysStartDate = utils.generateReportStartDate(reportDate, 6);
-  const prev7DaysVisits = await utils.getVisits(
-    Visits,
-    prev7DaysStartDate,
-    reportDate
-  );
-
-  const visitsByDay = utils.getWeeklyData(prev7DaysVisits);
-  const prevYearStartDate = utils.generateReportStartDate(reportDate, 365);
-  const prevMonthlyVisits = await utils.getVisits(
-    Summaries,
-    prevYearStartDate,
-    reportDate
-  );
-
-  const weeklyLabels = Object.keys(visitsByDay);
-  const weeklyData = Object.values(visitsByDay);
-
-  const prev6MonthVisits = prevMonthlyVisits.slice(-6);
-  const monthlyLabels = prev6MonthVisits.map((visit) => visit.monthName);
-  const monthlyData = prev6MonthVisits.map((visit) => visit.value);
-
-  const chartData = { weeklyLabels, weeklyData, monthlyLabels, monthlyData };
-  const days = Array.from(Array(31).keys(), (n) => n + 1);
-
+  const reportData = await utils.getDataAndUpdateReport(reportDate);
   res.render('index', {
-    data: reportData,
-    displayDate,
-    chartData,
-    days,
+    data: reportData.reportData,
+    displayDate: reportData.displayDate,
+    chartData: reportData.chartData,
+    days: reportData.days,
   });
 });
 
@@ -82,41 +52,13 @@ app.get('/data/', async (req, res) => {
   if (reportDate > todaysDate) {
     reportDate = todaysDate;
   }
-  const displayDate = reportDate.toDateString().split(' ').slice(1).join(' ');
 
-  const reportStartDate = utils.generateReportStartDate(reportDate, 30);
-  const visits = await utils.getVisits(Visits, reportStartDate, reportDate);
-  const reportData = utils.generateReportData(visits);
-
-  const prev7DaysStartDate = utils.generateReportStartDate(reportDate, 6);
-  const prev7DaysVisits = await utils.getVisits(
-    Visits,
-    prev7DaysStartDate,
-    reportDate
-  );
-
-  const visitsByDay = utils.getWeeklyData(prev7DaysVisits);
-  const prevYearStartDate = utils.generateReportStartDate(reportDate, 365);
-  const prevMonthlyVisits = await utils.getVisits(
-    Summaries,
-    prevYearStartDate,
-    reportDate
-  );
-
-  const weeklyLabels = Object.keys(visitsByDay);
-  const weeklyData = Object.values(visitsByDay);
-
-  const prev6MonthVisits = prevMonthlyVisits.slice(-6);
-  const monthlyLabels = prev6MonthVisits.map((visit) => visit.monthName);
-  const monthlyData = prev6MonthVisits.map((visit) => visit.value);
-
-  const chartData = { weeklyLabels, weeklyData, monthlyLabels, monthlyData };
-  const days = Array.from(Array(31).keys(), (n) => n + 1);
+  const reportData = await utils.getDataAndUpdateReport(reportDate);
 
   res.send({
-    data: reportData,
-    displayDate,
-    chartData,
+    data: reportData.reportData,
+    displayDate: reportData.displayDate,
+    chartData: reportData.chartData,
   });
 });
 

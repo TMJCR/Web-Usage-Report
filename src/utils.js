@@ -1,3 +1,5 @@
+const Visits = require('../models/visit');
+const Summaries = require('../models/summary');
 const filterAndCount = (
   collectionToFilter,
   variable,
@@ -133,9 +135,46 @@ const generateReportData = (visits) => {
   };
 };
 
+const getDataAndUpdateReport = async (reportDate) => {
+  const displayDate = reportDate.toDateString().split(' ').slice(1).join(' ');
+  const reportStartDate = generateReportStartDate(reportDate, 30);
+  const visits = await getVisits(Visits, reportStartDate, reportDate);
+  const reportData = generateReportData(visits);
+
+  const prev7DaysStartDate = generateReportStartDate(reportDate, 6);
+  const prev7DaysVisits = await getVisits(
+    Visits,
+    prev7DaysStartDate,
+    reportDate
+  );
+
+  const visitsByDay = getWeeklyData(prev7DaysVisits);
+  const prevYearStartDate = generateReportStartDate(reportDate, 365);
+  const prevMonthlyVisits = await getVisits(
+    Summaries,
+    prevYearStartDate,
+    reportDate
+  );
+
+  const weeklyLabels = Object.keys(visitsByDay);
+  const weeklyData = Object.values(visitsByDay);
+
+  const prev6MonthVisits = prevMonthlyVisits.slice(-6);
+  const monthlyLabels = prev6MonthVisits.map((visit) => visit.monthName);
+  const monthlyData = prev6MonthVisits.map((visit) => visit.value);
+
+  const chartData = { weeklyLabels, weeklyData, monthlyLabels, monthlyData };
+  const days = Array.from(Array(31).keys(), (n) => n + 1);
+  const obj = {
+    reportData,
+    displayDate,
+    chartData,
+    days,
+  };
+
+  return obj;
+};
+
 module.exports = {
-  generateReportStartDate,
-  getVisits,
-  generateReportData,
-  getWeeklyData,
+  getDataAndUpdateReport,
 };
