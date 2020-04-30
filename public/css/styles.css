@@ -403,6 +403,11 @@ footer .about {
     opacity: 0;
 }
 
+.shakerSide {
+    animation: shakerSide 0.4s;
+    animation-iteration-count:1;
+     }
+
 .shaker:nth-of-type(2n){
     animation: shake 0.4s;
     animation-iteration-count:1;
@@ -413,10 +418,17 @@ footer .about {
  animation-iteration-count:1;
   }
 
+
 @keyframes shake {
     0% { transform: translate(0px, 2px); }
     50% { transform: translate(-0px, -3px); }
     75% { transform: translate(-0px, 2px); }
+    100% { transform: translate(0px, 0px); }
+  }
+  @keyframes shakerSide {
+    0% { transform: translate(1px, 0px); }
+    50% { transform: translate(-2px, 0px); }
+    75% { transform: translate(1px, 0px); }
     100% { transform: translate(0px, 0px); }
   }
 /* 

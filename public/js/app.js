@@ -2,20 +2,6 @@ document.querySelectorAll('.downloadText').forEach((item) => {
   item.style.opacity = 1;
 });
 
-const monthNames = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-];
 const monthList = document.getElementById('month-selection');
 const dayList = document.getElementById('day-selection');
 
@@ -41,16 +27,6 @@ monthList.onchange = function () {
     });
   }
 };
-
-// const updateSelectedDateFields = () => {
-//   const date = document
-//     .querySelector('#displayDate-update')
-//     .innerText.split(' ');
-//   monthList.options.selectedIndex = monthNames.indexOf(date[0]);
-//   dayList.options.selectedIndex = date[1] - 1;
-// };
-
-// updateSelectedDateFields();
 
 const dateForm = document.querySelector('#date-form');
 dateForm.addEventListener('submit', (e) => {
@@ -102,6 +78,13 @@ const updateTop5List = (data, listClass, variableName) => {
   });
 };
 
+const updateTop5Image = (data) => {
+  const item = document.querySelectorAll('.company-image');
+  item.forEach((item, index) => {
+    item.src = `../../public/img/${data.data.top5Companies[index][0]}.png`;
+  });
+};
+
 const updateDisplayDate = (data) => {
   const date = document.querySelector('#displayDate-update');
   date.innerHTML = data.displayDate;
@@ -115,19 +98,31 @@ const updateChartDataAndCharts = (data) => {
   removeAndUpdateCharts();
 };
 
-const updateReport = (data) => {
-  updateValues(data);
-  updateDownloadText(data);
-  updateTop5List(data, '.popular-page', 'top5Pages');
-  updateTop5List(data, '.popular-value', 'top5Pages');
-  updateTop5List(data, '.company-page', 'top5Companies');
-  updateTop5List(data, '.company-value', 'top5Companies');
-  updateDisplayDate(data);
-  updateChartDataAndCharts(data);
+const updateAnimation = () => {
   document.querySelectorAll('.shake').forEach((d) => {
     d.classList.add('shaker');
     setTimeout(() => {
       d.classList.remove('shaker');
     }, 1000);
   });
+  document.querySelectorAll('.shakeSide').forEach((d) => {
+    d.classList.add('shakerSide');
+    setTimeout(() => {
+      d.classList.remove('shakerSide');
+    }, 1000);
+  });
+};
+
+const updateReport = (data) => {
+  console.log(data);
+  updateValues(data);
+  updateDownloadText(data);
+  updateTop5List(data, '.popular-page', 'top5Pages');
+  updateTop5List(data, '.popular-value', 'top5Pages');
+  updateTop5List(data, '.company-page', 'top5Companies');
+  updateTop5List(data, '.company-value', 'top5Companies');
+  updateTop5Image(data);
+  updateDisplayDate(data);
+  updateChartDataAndCharts(data);
+  updateAnimation();
 };

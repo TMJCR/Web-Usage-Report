@@ -129,8 +129,8 @@
             <ul class="list">
                 {{#each data.top5Companies}}
                 <li><span class="rank">{{inc @index}} </span>
-                    <img src="../../public/img/{{this.[0]}}.png" alt=""><span id="top5Companies-{{inc @index}}-page"
-                        class="company-page">{{this.[0]}}</span>
+                    <img class="company-image shakeSide" src=" ../../public/img/{{this.[0]}}.png" alt=""><span
+                        id="top5Companies-{{inc @index}}-page" class="company-page">{{this.[0]}}</span>
                     <span id=" top5Companies-{{inc @index}}-value"
                         class="company-value rank-value shake">({{this.[1]}})</span>
                 </li>
