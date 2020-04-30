@@ -4,7 +4,7 @@ const hbs = require('hbs');
 
 const utils = require('../src/utils');
 require('../db/mongoose');
-// require('./seed');
+require('./seed');
 
 const User = require('../models/user');
 const Visits = require('../models/visit');
