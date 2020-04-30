@@ -222,6 +222,7 @@ const names = [
 ];
 
 const pages = [
+  'Promotional',
   'UK Economic Forecasts',
   'EU Economic Forecasts',
   'Credit Market Forecasts',
@@ -230,7 +231,10 @@ const pages = [
   'Portfolio Insight',
   'Mortgage Markets',
   'Commodities',
-  'Promotional',
+  'Stress Test Scenarios',
+  'Banking Regulation',
+  'Commercial Real Estate',
+  'Stochastic Scenarios',
 ];
 
 const monthNames = [

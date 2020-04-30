@@ -115,10 +115,10 @@
         <div class="left-list">
             <div class="list-title">Visits To Most Popular Pages</div>
             <ul class="list">
-                {{#each data.top5Pages}}
+                {{#each data.top10Pages}}
                 <li><span class="rank">{{inc @index}} </span>
-                    <span id="top5Pages-{{inc @index}}-page" class="popular-page">{{this.[0]}}</span>
-                    <span id="top5Pages-{{inc @index}}-value"
+                    <span id="top10Pages-{{inc @index}}-page" class="popular-page">{{this.[0]}}</span>
+                    <span id="top10Pages-{{inc @index}}-value"
                         class="popular-value rank-value shake">({{this.[1]}})</span>
                 </li>
                 {{/each}}
@@ -127,11 +127,11 @@
         <div class="right-list">
             <div class="list-title">Visits by Company</div>
             <ul class="list">
-                {{#each data.top5Companies}}
+                {{#each data.top10Companies}}
                 <li><span class="rank">{{inc @index}} </span>
                     <img class="company-image shakeSide" src=" ../../public/img/{{this.[0]}}.png" alt=""><span
-                        id="top5Companies-{{inc @index}}-page" class="company-page">{{this.[0]}}</span>
-                    <span id=" top5Companies-{{inc @index}}-value"
+                        id="top10Companies-{{inc @index}}-page" class="company-page">{{this.[0]}}</span>
+                    <span id=" top10Companies-{{inc @index}}-value"
                         class="company-value rank-value shake">({{this.[1]}})</span>
                 </li>
                 {{/each}}

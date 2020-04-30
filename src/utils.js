@@ -108,11 +108,11 @@ const generateReportData = (visits) => {
 
   const pageCounts = getCountFromDatabase(visits, 'page');
   const rankedPages = rankVariable(pageCounts);
-  const top5Pages = rankedPages.slice(0, 5);
+  const top10Pages = rankedPages.slice(0, 10);
 
   const companyCounts = getCountFromDatabase(visits, 'company');
   const rankedCompanies = rankVariable(companyCounts);
-  const top5Companies = rankedCompanies.slice(0, 5);
+  const top10Companies = rankedCompanies.slice(0, 10);
 
   return {
     totalVisits,
@@ -128,8 +128,8 @@ const generateReportData = (visits) => {
     url,
     social,
     advert,
-    top5Pages,
-    top5Companies,
+    top10Pages,
+    top10Companies,
   };
 };
 

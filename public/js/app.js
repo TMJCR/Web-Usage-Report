@@ -65,7 +65,7 @@ const updateValues = (data) => {
   }
 };
 
-const updateTop5List = (data, listClass, variableName) => {
+const updateTop10List = (data, listClass, variableName) => {
   let resultIndex;
   if (listClass.split('-')[1] === 'page') {
     resultIndex = 0;
@@ -78,10 +78,10 @@ const updateTop5List = (data, listClass, variableName) => {
   });
 };
 
-const updateTop5Image = (data) => {
+const updateTop10Image = (data) => {
   const item = document.querySelectorAll('.company-image');
   item.forEach((item, index) => {
-    item.src = `../../public/img/${data.data.top5Companies[index][0]}.png`;
+    item.src = `../../public/img/${data.data.top10Companies[index][0]}.png`;
   });
 };
 
@@ -117,11 +117,11 @@ const updateReport = (data) => {
   console.log(data);
   updateValues(data);
   updateDownloadText(data);
-  updateTop5List(data, '.popular-page', 'top5Pages');
-  updateTop5List(data, '.popular-value', 'top5Pages');
-  updateTop5List(data, '.company-page', 'top5Companies');
-  updateTop5List(data, '.company-value', 'top5Companies');
-  updateTop5Image(data);
+  updateTop10List(data, '.popular-page', 'top10Pages');
+  updateTop10List(data, '.popular-value', 'top10Pages');
+  updateTop10List(data, '.company-page', 'top10Companies');
+  updateTop10List(data, '.company-value', 'top10Companies');
+  updateTop10Image(data);
   updateDisplayDate(data);
   updateChartDataAndCharts(data);
   updateAnimation();
