@@ -92,9 +92,9 @@ const updateDisplayDate = (data) => {
 
 const updateChartDataAndCharts = (data) => {
   weeklyData = data.chartData.weeklyData;
-  monthlyData = data.chartData.weeklyData;
+  monthlyData = data.chartData.monthlyData;
   weeklyLabels = data.chartData.weeklyLabels;
-  monthlyLabels = data.chartData.weeklyLabels;
+  monthlyLabels = data.chartData.monthlyLabels;
   removeAndUpdateCharts();
 };
 
@@ -114,6 +114,7 @@ const updateAnimation = () => {
 };
 
 const updateReport = (data) => {
+  console.log(data);
   updateValues(data);
   updateDownloadText(data);
   updateTop5List(data, '.popular-page', 'top5Pages');

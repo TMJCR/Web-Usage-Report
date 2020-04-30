@@ -10,7 +10,7 @@
                         <option value="1">Feb</option>
                         <option value="2">Mar</option>
                         <option value="3">Apr</option>
-                        <option value="4">May</option>
+                        <option value="4" selected>May</option>
                     </select>
                     <select id="day-selection" name="day">
                         {{#each days}}
@@ -143,17 +143,17 @@
 <script>
     let weeklyData = [{{ chartData.weeklyData }}];
     let monthlyData = [{{ chartData.monthlyData }}];
-    let monthlylabels = decodeURI("{{ chartData.monthlyLabels }}").split(",")
+    let monthlyLabels = decodeURI("{{ chartData.monthlyLabels }}").split(",")
     let weeklyLabels = decodeURI("{{chartData.weeklyLabels}}").split(",")
     updateWeeklyChart(weeklyLabels, weeklyData);
-    updateMonthlyChart(monthlylabels, monthlyData);
+    updateMonthlyChart(monthlyLabels, monthlyData);
     let chartSize;
 
     const removeAndUpdateCharts = () => {
         removeOldChartContext("weeklyChartContainer", "weeklyChart");
         updateWeeklyChart(weeklyLabels, weeklyData);
         removeOldChartContext("monthlyChartContainer", "monthlyChart");
-        updateMonthlyChart(monthlylabels, monthlyData);
+        updateMonthlyChart(monthlyLabels, monthlyData);
     }
 
     const updateChart = () => {
