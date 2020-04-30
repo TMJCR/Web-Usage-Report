@@ -47,7 +47,11 @@ app.get('/data/', async (req, res) => {
   if (!(year && month && day)) {
     reportDate = todaysDate;
   } else {
-    reportDate = new Date(Date.UTC(year, month, day, 12));
+    try {
+      reportDate = new Date(Date.UTC(year, month, day, 12));
+    } catch (error) {
+      reportDate = todaysDate;
+    }
   }
   if (reportDate > todaysDate) {
     reportDate = todaysDate;

@@ -284,7 +284,7 @@ var randomChoiceWithWeightMulti = (choices, weights) => {
 
 // for (name of names) {
 //   const [firstName, lastName] = name.split(' ');
-//   const randomSelection = generateRandom(companies.length)-1;
+//   const randomSelection = generateRandom(companies.length) - 1;
 //   const company = companies[randomSelection];
 //   const companyEmail = company.split(' ').join('');
 //   const email = `${firstName}.${lastName}@${companyEmail}.com`;
@@ -333,21 +333,22 @@ const createVisitData = async (numOfRecordsToAdd) => {
   const users = await getUsersFromDB();
   for (let i = 0; i < numOfRecordsToAdd; i++) {
     const user = users[generateRandom(users.length - 1)];
-    const randomMonth = generateRandom(12) - 1;
+    // const randomMonth = generateRandom(12) - 1;
+    const randomMonth = 4;
     const randomDay = generateRandom(31);
     const randomHour = generateRandom(23);
     const randomMin = generateRandom(59);
     const page = pages[generateRandom(pages.length - 1)];
-    const time = new Date(2019, randomMonth, randomDay, randomHour, randomMin);
-    const download = randomChoiceWithWeightMulti([true, false], [0.13, 0.87]);
+    const time = new Date(2020, randomMonth, randomDay, randomHour, randomMin);
+    const download = randomChoiceWithWeightMulti([true, false], [0.3, 0.7]);
     const subscriber = randomChoiceWithWeightMulti([true, false], [0.98, 0.02]);
     const device = randomChoiceWithWeightMulti(
       ['Mobile', 'Desktop'],
-      [0.84, 0.16]
+      [0.31, 0.69]
     );
     const method = randomChoiceWithWeightMulti(
       ['Link', 'Url', 'Advert', 'Social'],
-      [0.1, 0.82, 0.02, 0.06]
+      [0.12, 0.8, 0.02, 0.06]
     );
     const visitLength = generateRandom(240);
     const visit = new Visit({
@@ -377,8 +378,8 @@ const createVisitData = async (numOfRecordsToAdd) => {
     await addToMonthlyTotal(visit);
   }
 };
-console.log('added');
-createVisitData(2000);
+
+// createVisitData(400);
 
 const findVisit = async (id) => {
   const user = await User.findById(id);
