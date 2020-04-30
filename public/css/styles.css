@@ -420,9 +420,9 @@ footer .about {
 
 
 @keyframes shake {
-    0% { transform: translate(0px, 2px); }
-    50% { transform: translate(-0px, -3px); }
-    75% { transform: translate(-0px, 2px); }
+    0% { transform: translate(0px, 1px); }
+    50% { transform: translate(-0px, -2px); }
+    75% { transform: translate(-0px, 1px); }
     100% { transform: translate(0px, 0px); }
   }
   @keyframes shakerSide {

@@ -114,7 +114,6 @@ const updateAnimation = () => {
 };
 
 const updateReport = (data) => {
-  console.log(data);
   updateValues(data);
   updateDownloadText(data);
   updateTop5List(data, '.popular-page', 'top5Pages');
