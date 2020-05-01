@@ -7,11 +7,11 @@ const setCanvasWidthandFontSize = (canvasName) => {
   const screenWidth = window.innerWidth;
   const canvas = document.getElementById(canvasName);
   if (screenWidth < 750) {
-    canvas.width = 350;
+    canvas.width = 320;
     canvas.height = 275;
     return 14;
   } else if (screenWidth < 1050) {
-    canvas.width = 300;
+    canvas.width = 280;
     canvas.height = 250;
     return 12;
   }
