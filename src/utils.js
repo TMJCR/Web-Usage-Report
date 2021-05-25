@@ -1,5 +1,5 @@
-const Visits = require('../models/visit');
-const Summaries = require('../models/summary');
+const Visits = require("../models/visit");
+const Summaries = require("../models/summary");
 const filterAndCount = (
   collectionToFilter,
   variable,
@@ -19,7 +19,7 @@ const filterAndCount = (
 
 const getCountFromDatabase = (collection, key) => {
   const sum = collection.reduce((sum, current) => {
-    if (typeof sum[current[key]] === 'undefined') {
+    if (typeof sum[current[key]] === "undefined") {
       sum[current[`${key}`]] = 1;
     } else {
       sum[current[`${key}`]] += 1;
@@ -32,7 +32,7 @@ const getCountFromDatabase = (collection, key) => {
 const getWeeklyData = (collection) => {
   const visitsByDay = collection.reduce((sum, current) => {
     const date = `${current.time.getDate()}/${current.time.getMonth() + 1}`;
-    if (typeof sum[date] === 'undefined') {
+    if (typeof sum[date] === "undefined") {
       sum[date] = 1;
     } else {
       sum[date] += 1;
@@ -44,15 +44,15 @@ const getWeeklyData = (collection) => {
 
 const getDownloadColor = (numOfDownloads) => {
   if (numOfDownloads <= 10) {
-    return 'st11';
+    return "st11";
   } else if (numOfDownloads <= 20) {
-    return 'st9';
+    return "st9";
   } else if (numOfDownloads <= 50) {
-    return 'st7';
+    return "st7";
   } else if (numOfDownloads <= 100) {
-    return 'st8';
+    return "st8";
   } else {
-    return 'st10';
+    return "st10";
   }
 };
 const rankVariable = (collection) => {
@@ -89,8 +89,8 @@ const generateReportData = (visits) => {
     visits.reduce((sum, visit) => sum + visit.visitLength, 0) / visits.length
   );
 
-  const numOfDownloads = filterAndCount(visits, 'download', true);
-  const downloads = { singleDigit: '', doubleDigit: '', tripleDigit: '' };
+  const numOfDownloads = filterAndCount(visits, "download", true);
+  const downloads = { singleDigit: "", doubleDigit: "", tripleDigit: "" };
   if (numOfDownloads.toString().length === 1) {
     downloads.singleDigit = numOfDownloads;
   } else if (numOfDownloads.toString().length === 2) {
@@ -99,20 +99,20 @@ const generateReportData = (visits) => {
     downloads.tripleDigit = numOfDownloads;
   }
   const downloadColor = getDownloadColor(numOfDownloads);
-  const subscribers = filterAndCount(visits, 'subscriber', true);
-  const nonSubscribers = filterAndCount(visits, 'subscriber', false);
-  const mobile = filterAndCount(visits, 'device', 'Mobile', true);
-  const desktop = filterAndCount(visits, 'device', 'Desktop', true);
-  const link = filterAndCount(visits, 'method', 'Link', true);
-  const url = filterAndCount(visits, 'method', 'Url', true);
-  const social = filterAndCount(visits, 'method', 'Social', true);
-  const advert = filterAndCount(visits, 'method', 'Advert', true);
+  const subscribers = filterAndCount(visits, "subscriber", true);
+  const nonSubscribers = filterAndCount(visits, "subscriber", false);
+  const mobile = filterAndCount(visits, "device", "Mobile", true);
+  const desktop = filterAndCount(visits, "device", "Desktop", true);
+  const link = filterAndCount(visits, "method", "Link", true);
+  const url = filterAndCount(visits, "method", "Url", true);
+  const social = filterAndCount(visits, "method", "Social", true);
+  const advert = filterAndCount(visits, "method", "Advert", true);
 
-  const pageCounts = getCountFromDatabase(visits, 'page');
+  const pageCounts = getCountFromDatabase(visits, "page");
   const rankedPages = rankVariable(pageCounts);
   const top10Pages = rankedPages.slice(0, 10);
 
-  const companyCounts = getCountFromDatabase(visits, 'company');
+  const companyCounts = getCountFromDatabase(visits, "company");
   const rankedCompanies = rankVariable(companyCounts);
   const top10Companies = rankedCompanies.slice(0, 10);
 
@@ -136,7 +136,7 @@ const generateReportData = (visits) => {
 };
 
 const getDataAndUpdateReport = async (reportDate) => {
-  const displayDate = reportDate.toDateString().split(' ').slice(1).join(' ');
+  const displayDate = reportDate.toDateString().split(" ").slice(1).join(" ");
   const reportStartDate = generateReportStartDate(reportDate, 30);
   const visits = await getVisits(Visits, reportStartDate, reportDate);
   const reportData = generateReportData(visits);
