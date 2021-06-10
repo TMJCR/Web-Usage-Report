@@ -470,7 +470,7 @@ footer .about {
     }
     .last-30-days {
       align-self: center;
-      font-size: 0.5em;
+      font-size: 0.6em;
     }
 
     .chart1 {
@@ -497,7 +497,7 @@ footer .about {
     }
 
     .date {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       display: flex;
       justify-content: space-between;
     }
