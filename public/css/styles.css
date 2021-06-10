@@ -468,6 +468,10 @@ footer .about {
     .date-box select {
       max-width: 50%;
     }
+    .last-30-days {
+      align-self: center;
+    }
+
     .chart1 {
       min-width: 320px;
     }
@@ -493,6 +497,8 @@ footer .about {
 
     .date {
       font-size: 1.7rem;
+      display: flex;
+      justify-content: space-between;
     }
     .submit {
       display: flex;
