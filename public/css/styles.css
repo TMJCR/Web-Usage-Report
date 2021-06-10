@@ -458,9 +458,7 @@ footer .about {
     .display-date {
       font-size: 0.8em;
     }
-    .date-selection {
-      display: grid;
-    }
+
     .date-form {
       text-align: right;
     }
