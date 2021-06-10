@@ -1,7 +1,6 @@
 const path = require("path");
 const express = require("express");
 const hbs = require("hbs");
-const WebFont = require("webfontloader");
 
 const utils = require("../src/utils");
 require("../db/mongoose");
