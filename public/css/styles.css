@@ -461,6 +461,12 @@ footer .about {
     .date-selection {
       display: grid;
     }
+    .date-form {
+      text-align: left;
+    }
+    .date-box {
+      display: block;
+    }
     .chart1 {
       min-width: 320px;
     }

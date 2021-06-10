@@ -30,7 +30,10 @@ monthList.onchange = function () {
 
 const dateForm = document.querySelector("#date-form");
 dateForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+  // e.preventDefault();
+  alert(
+    `https://web-usage-report.herokuapp.com/data/?month=${month}&day=${day}+&year=${year}`
+  );
   const day = document.querySelector("#day-selection").selectedOptions[0].value;
   const month =
     document.querySelector("#month-selection").selectedOptions[0].value;
