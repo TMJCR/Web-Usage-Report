@@ -40,6 +40,7 @@ dateForm.addEventListener("submit", (e) => {
     `https://web-usage-report.herokuapp.com/data/?month=${month}&day=${day}+&year=${year}`
   ).then((response) => {
     response.json().then((data) => {
+      alert(data);
       if (data.error) {
       } else {
         updateReport(data);
