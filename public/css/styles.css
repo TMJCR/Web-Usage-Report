@@ -462,10 +462,13 @@ footer .about {
       display: grid;
     }
     .date-form {
-      text-align: left;
+      text-align: right;
     }
     .date-box {
       display: block;
+    }
+    .date-box select {
+      max-width: 50%;
     }
     .chart1 {
       min-width: 320px;

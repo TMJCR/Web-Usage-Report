@@ -8,19 +8,19 @@
                 <form id="date-form" class="date-form">
                     <div class="date-selection">
                     <label for="month">Report Date: </label>
-                    <select id="month-selection" name="month">
+                    <select class="select" id="month-selection" name="month">
                         <option value="0">Jan</option>
                         <option value="1">Feb</option>
                         <option value="2">Mar</option>
                         <option value="3">Apr</option>
                         <option value="4" selected>May</option>
                     </select>
-                    <select id="day-selection" name="day">
+                    <select class="select" id="day-selection" name="day">
                         {{#each days}}
                         <option value="{{inc @index}} ">{{this}}</option>
                         {{/each}}
                     </select>
-                    <select id="year-selection" name="year">
+                    <select class="select" id="year-selection" name="year">
                         <option value="2021">2021</option>
                     </select>
                     <button class="submit purple-gradient">Update</button>
