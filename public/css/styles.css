@@ -459,6 +459,7 @@ footer .about {
       font-size: 0.8em;
     }
     .date-selection {
+      display: grid;
     }
     .chart1 {
       min-width: 320px;
