@@ -15,7 +15,7 @@ Live Demo: https://web-usage-report.herokuapp.com/
 -What I learnt:
 * Being a server-side rendered site, I had to learn how templating engines work to generate HTML. For this project I used Handlebars.js.
 * I learnt how to use Mongoose.js to create schema's for the dummy data that is stored in MongoDB. 
-* As the original site was for a well established business with strict design and presentation principles I had to follow a company style guide which set out CSS rules on margins, padding, colors, fonts etc. This taught me how to design within a pre-defined framework and to adhere to design princples set out by experienced designers.    
+* As the original site was for a well established business with strict design and presentation principles I had to follow a company style guide which set out CSS rules on margins, padding, colors, fonts etc. This taught me how to design within a predefined framework and to adhere to design principles set out by experienced designers.    
 * An important aspect of the web-usage report was to communicate with a sales manager to understand the insights they aimed to derive from the data - which was essentially a list of activity and timestamps. I then had to find the most appropriate way to extract the relevant information, aggregate it and then present it in a way that was easily digestible and satisfied their requirements.
-* To replicate the original application as close as possible I wanted to have realistic dummy companies so I gained some understanding of logo design and typography to create authentic company names and logos.  
+* To replicate the original application as closely as possible I wanted to have realistic dummy companies so I gained some understanding of logo design and typography to create authentic company names and logos.  
 
